@@ -86,6 +86,68 @@
         .status-active { background-color: #5cb85c; }
         .status-warning { background-color: #f0ad4e; }
         .status-error { background-color: #d9534f; }
+        
+        /* 画面テスト用のスタイル */
+        .test-panel {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            width: 280px;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 12px;
+        }
+        .test-panel h5 {
+            color: #f0ad4e;
+            margin-top: 0;
+            border-bottom: 1px solid #555;
+            padding-bottom: 5px;
+        }
+        .test-btn {
+            background: #337ab7;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            margin: 2px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        .test-btn:hover {
+            background: #23527c;
+        }
+        .test-btn.danger { background: #d9534f; }
+        .test-btn.warning { background: #f0ad4e; }
+        .test-btn.success { background: #5cb85c; }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .alert {
+            transition: all 0.3s ease;
+        }
+        .btn {
+            transition: all 0.3s ease;
+        }
+        .panel {
+            transition: all 0.3s ease;
+        }
+        .panel:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
     </style>
 </head>
 <body>
@@ -104,10 +166,49 @@
         </div>
     </nav>
 
+    <!-- 画面挙動テスト用コントロールパネル -->
+    <div class="test-panel" id="testPanel">
+        <h5>🧪 画面挙動テストパネル</h5>
+        <div style="margin-bottom: 10px;">
+            <strong>基本操作:</strong><br>
+            <button class="test-btn success" onclick="goToSection('top')">トップ</button>
+            <button class="test-btn" onclick="goToSection('regist')">登録</button>
+            <button class="test-btn" onclick="goToSection('himoduke')">紐付け</button>
+            <button class="test-btn" onclick="goToSection('result')">結果</button>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            <strong>メッセージテスト:</strong><br>
+            <button class="test-btn success" onclick="showMessage('success', 'テスト成功メッセージ')">成功</button>
+            <button class="test-btn warning" onclick="testWarningScenario()">警告</button>
+            <button class="test-btn danger" onclick="testErrorScenario()">エラー</button>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            <strong>ファイルアップロード:</strong><br>
+            <button class="test-btn" onclick="demoFileUpload('terminal')">端末CSV</button>
+            <button class="test-btn" onclick="demoFileUpload('sim')">SIM CSV</button>
+        </div>
+        
+        <div style="margin-bottom: 10px;">
+            <strong>データ操作:</strong><br>
+            <button class="test-btn success" onclick="addBindingRecord()">紐付け追加</button>
+            <button class="test-btn danger" onclick="resetDemo()">リセット</button>
+        </div>
+        
+        <div>
+            <button class="test-btn" onclick="toggleTestPanel()" style="width: 100%;">パネル非表示</button>
+        </div>
+    </div>
+
     <div class="container">
         <div class="page-header">
             <h1>画面プレビュー <small>システム画面の動作確認</small></h1>
             <p class="text-muted">以下は各画面のプレビューです。実際のシステムでは、データベース接続とサーバーサイド処理が動作します。</p>
+            <div class="alert alert-info">
+                <strong>💡 操作ガイド:</strong> 右上のテストパネルで各種動作をテストできます。画面をクリックして挙動を確認してください。
+                <button class="btn btn-xs btn-info pull-right" onclick="showTestGuide()">操作ガイド表示</button>
+            </div>
         </div>
 
         <!-- 1. トップ画面 -->
@@ -429,58 +530,251 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-        // デモ用JavaScript
+        // デモ用JavaScript - 画面挙動テスト対応
+        let uploadedFiles = {
+            terminal: false,
+            sim: false
+        };
+
+        let bindingData = [];
+
         function demoFileUpload(type) {
             var fileInfo = document.getElementById(type + 'FileInfo');
             var executeBtn = document.getElementById('executeBtn');
+            var button = event.target;
             
-            // ファイル選択をシミュレート
+            // ボタンを無効化
+            button.disabled = true;
+            button.textContent = 'アップロード中...';
+            
+            // ファイル選択をシミュレート（1-3秒のランダム待機）
+            const delay = Math.random() * 2000 + 1000;
             setTimeout(function() {
                 fileInfo.style.display = 'block';
-                showMessage('success', type + 'データファイルが正常に選択されました。');
+                uploadedFiles[type] = true;
+                
+                // ボタンを復活
+                button.disabled = false;
+                button.textContent = type === 'terminal' ? '端末データ登録' : 'SIMデータ登録';
+                button.className = 'btn btn-success';
+                
+                showMessage('success', type + 'データファイルが正常に選択されました。レコード数: ' + 
+                    (type === 'terminal' ? '150件' : '200件'));
                 
                 // 両方のファイルが選択されたら実行ボタンを表示
-                if (document.getElementById('terminalFileInfo').style.display === 'block' && 
-                    document.getElementById('simFileInfo').style.display === 'block') {
+                if (uploadedFiles.terminal && uploadedFiles.sim) {
                     executeBtn.style.display = 'inline-block';
+                    executeBtn.classList.add('pulse');
                 }
-            }, 1000);
+            }, delay);
         }
 
         function showMessage(type, message) {
             var messageArea = document.getElementById('messageArea');
             var messageText = document.getElementById('messageText');
             
-            messageArea.className = 'alert alert-' + type;
-            messageText.textContent = message;
+            messageArea.className = 'alert alert-' + type + ' alert-dismissible';
+            messageText.innerHTML = '<strong>' + 
+                (type === 'success' ? '成功: ' : type === 'warning' ? '警告: ' : type === 'danger' ? 'エラー: ' : '') + 
+                '</strong>' + message;
             messageArea.style.display = 'block';
             
-            // 3秒後に非表示
-            setTimeout(function() {
-                messageArea.style.display = 'none';
-            }, 3000);
-        }
-
-        function showSuccess() {
-            showMessage('success', 'データの登録が正常に完了しました。登録件数: 端末150件、SIM200件');
-        }
-
-        function showBindingSuccess() {
-            showMessage('success', '端末とSIMの紐付けが正常に完了しました。');
-            setTimeout(function() {
-                goToSection('result');
-            }, 2000);
-        }
-
-        function showDeleteConfirm() {
-            if (confirm('この紐付け情報を削除してもよろしいですか？')) {
-                showMessage('success', '紐付け情報を削除しました。');
+            // 5秒後に非表示（成功メッセージ以外は手動で閉じる）
+            if (type === 'success') {
+                setTimeout(function() {
+                    messageArea.style.display = 'none';
+                }, 5000);
             }
         }
 
-        function goToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        function showSuccess() {
+            const executeBtn = document.getElementById('executeBtn');
+            executeBtn.disabled = true;
+            executeBtn.textContent = '登録処理中...';
+            executeBtn.className = 'btn btn-warning';
+            
+            // 登録処理をシミュレート
+            setTimeout(function() {
+                showMessage('success', 'データの登録が正常に完了しました。<br>登録件数: 端末150件、SIM200件<br>処理時間: 2.3秒');
+                executeBtn.textContent = '登録完了';
+                executeBtn.className = 'btn btn-success';
+                executeBtn.disabled = true;
+                
+                // データを結果画面に追加
+                addSampleData();
+            }, 2300);
         }
+
+        function showBindingSuccess() {
+            const button = event.target;
+            button.disabled = true;
+            button.textContent = '処理中...';
+            button.className = 'btn btn-warning btn-lg';
+            
+            setTimeout(function() {
+                showMessage('success', '端末とSIMの紐付けが正常に完了しました。結果画面に遷移します...');
+                button.textContent = '紐付け完了';
+                button.className = 'btn btn-success btn-lg';
+                
+                // 紐付けデータを追加
+                addBindingRecord();
+                
+                setTimeout(function() {
+                    goToSection('result');
+                }, 2000);
+            }, 1500);
+        }
+
+        function showDeleteConfirm() {
+            const row = event.target.closest('tr');
+            const terminalNo = row.cells[0].textContent;
+            
+            if (confirm('端末製造番号: ' + terminalNo + '\nこの紐付け情報を削除してもよろしいですか？\n\n※この操作は取り消せません。')) {
+                // 削除アニメーション
+                row.style.backgroundColor = '#f2dede';
+                row.style.transition = 'all 0.5s ease';
+                
+                setTimeout(function() {
+                    row.remove();
+                    showMessage('success', '紐付け情報を削除しました。端末製造番号: ' + terminalNo);
+                    updateResultCount();
+                }, 500);
+            }
+        }
+
+        function addSampleData() {
+            // 結果画面にサンプルデータを追加（実際のシステムでは不要）
+            console.log('サンプルデータを結果画面に追加しました');
+        }
+
+        function addBindingRecord() {
+            // 新しい紐付けレコードを結果テーブルに追加
+            const tbody = document.querySelector('#result tbody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>T001234567893</td>
+                <td>89810000000000000003</td>
+                <td>440500000000003</td>
+                <td>2025/08/27 ${new Date().toLocaleTimeString('ja-JP', {hour: '2-digit', minute:'2-digit'})}</td>
+                <td><span class="label label-success">紐付け済み</span></td>
+                <td>
+                    <button class="btn btn-xs btn-danger" onclick="showDeleteConfirm()">削除</button>
+                </td>
+            `;
+            newRow.style.backgroundColor = '#d4edda';
+            tbody.insertBefore(newRow, tbody.firstChild);
+            
+            setTimeout(function() {
+                newRow.style.backgroundColor = '';
+            }, 3000);
+        }
+
+        function updateResultCount() {
+            const rows = document.querySelectorAll('#result tbody tr').length;
+            console.log('現在の結果件数: ' + rows + '件');
+        }
+
+        function goToSection(sectionId) {
+            // 画面遷移アニメーション
+            const target = document.getElementById(sectionId);
+            target.style.transform = 'scale(0.95)';
+            target.style.opacity = '0.5';
+            
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            
+            setTimeout(function() {
+                target.style.transform = 'scale(1)';
+                target.style.opacity = '1';
+                target.style.transition = 'all 0.3s ease';
+            }, 500);
+        }
+
+        function testErrorScenario() {
+            showMessage('danger', 'ファイル形式が正しくありません。CSVファイルを選択してください。');
+        }
+
+        function testWarningScenario() {
+            showMessage('warning', 'データに重複があります。続行しますか？<br><button class="btn btn-xs btn-primary" onclick="hideMessage()">続行</button> <button class="btn btn-xs btn-default" onclick="hideMessage()">キャンセル</button>');
+        }
+
+        function hideMessage() {
+            document.getElementById('messageArea').style.display = 'none';
+        }
+
+        function resetDemo() {
+            // デモの状態をリセット
+            uploadedFiles = { terminal: false, sim: false };
+            document.getElementById('terminalFileInfo').style.display = 'none';
+            document.getElementById('simFileInfo').style.display = 'none';
+            document.getElementById('executeBtn').style.display = 'none';
+            hideMessage();
+            showMessage('info', 'デモ状態をリセットしました。');
+        }
+
+        function toggleTestPanel() {
+            const panel = document.getElementById('testPanel');
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
+        function showTestGuide() {
+            const guide = `
+            🧪 画面挙動テストガイド
+            
+            【基本操作】
+            ・各画面への遷移をテスト
+            ・スムーススクロールアニメーション確認
+            
+            【メッセージテスト】
+            ・成功/警告/エラーメッセージの表示テスト
+            ・自動非表示タイマーの動作確認
+            
+            【ファイルアップロード】
+            ・CSV選択のシミュレーション
+            ・アップロード進行状況の表示
+            ・検証結果の表示テスト
+            
+            【データ操作】
+            ・新規データの追加アニメーション
+            ・削除確認ダイアログの動作
+            ・状態リセット機能
+            
+            【その他のテスト項目】
+            ・レスポンシブデザインの確認
+            ・ボタンのホバーエフェクト
+            ・フォーム入力の動作
+            ・テーブルの操作
+            
+            右上のテストパネルを活用して、
+            各機能の動作を確認してください。
+            `;
+            alert(guide);
+        }
+
+        // キーボードショートカット
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 't') {
+                e.preventDefault();
+                toggleTestPanel();
+            }
+            if (e.key === 'Escape') {
+                hideMessage();
+            }
+        });
+
+        // 初期化処理
+        window.onload = function() {
+            showMessage('info', '画面プレビューが読み込まれました。右上のテストパネルで各種機能をテストできます。');
+            
+            // テストパネルの初期表示
+            setTimeout(function() {
+                const panel = document.getElementById('testPanel');
+                panel.style.animation = 'slideIn 0.5s ease-out';
+            }, 1000);
+        };
 
         // 画面遷移のスムーススクロール
         $(document).ready(function() {
