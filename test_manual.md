@@ -3,7 +3,8 @@
 **プロジェクト名**: 救急情報管理システム　みまもりホン後継機対応  
 **ドキュメント名**: VSCodeテスト実行マニュアル  
 **作成者**: システム開発チーム  
-**作成日**: 2025/8/26  
+**作成日**: 2025/8/27  
+**最終更新**: 2025/8/27 (C#コーディング規約対応版)  
 **対象**: 開発者・QAエンジニア
 
 ---
@@ -15,7 +16,9 @@
 4. [VSCodeでのテスト実行](#vscodeでのテスト実行)
 5. [デバッグ実行](#デバッグ実行)
 6. [テスト結果の確認](#テスト結果の確認)
-7. [トラブルシューティング](#トラブルシューティング)
+7. [C#コーディング規約対応テスト](#c-コーディング規約対応テスト)
+8. [テストデータの活用](#テストデータの活用)
+9. [トラブルシューティング](#トラブルシューティング)
 
 ---
 
@@ -308,16 +311,24 @@ dotnet test --filter "MethodName=テストメソッド名" --logger "console;ver
 
 ```
 Test Run Successful.
-Total tests: 25
-     Passed: 22
+Total tests: 30
+     Passed: 27
      Failed: 0  
      Skipped: 3
- Total time: 1.2345 Seconds
+ Total time: 1.4567 Seconds
 
-Tests:
+Tests by Category:
+✅ Unit Tests: 18 passed
+✅ Integration Tests: 6 passed  
+✅ Scenario Tests: 3 passed
+⏭️ Performance Tests: 3 skipped (requires database)
+
+Individual Results:
 ✅ ValidateCsvFile_正常なCSVファイルの場合_成功を返す [1ms]
 ✅ ValidateCsvFile_ファイルが未選択の場合_エラーメッセージを返す [2ms]
 ✅ ProcessTerminalCsvFile_正常なCSVデータの場合_成功を返す [15ms]
+✅ BaseController_認証チェック_管理者権限で成功 [5ms]
+✅ ValidationResult_プロパティ初期化_正常に設定される [1ms]
 ⏭️ 端末データ登録_完全なワークフロー_正常に完了する [Skipped: データベース接続が必要]
 ```
 
@@ -356,6 +367,131 @@ dotnet test --list-tests
 # VSCodeを再起動
 # Ctrl+Shift+P → "Developer: Reload Window"
 ```
+
+---
+
+## 📚 C#コーディング規約対応テスト
+
+### 1. 更新されたテストファイル一覧
+
+#### **主要テストクラス** (C#コーディング規約適用済み)
+- **`TerminalRegistBusinessLogicTests.cs`**: ビジネスロジック層の単体テスト
+  - XML文書コメント完備
+  - #region/#endregion によるコード整理
+  - TestInitialize/TestCleanup パターン適用
+  
+- **`TerminalControllerTests.cs`**: コントローラー層の単体テスト
+  - HTTPアクション別テストメソッド
+  - モックオブジェクトの適切な使用
+  - 例外処理テストの包括的実装
+
+- **`BaseControllerTests.cs`**: 基盤認証機能テスト (**新規追加**)
+  - ユーザー認証テスト
+  - 権限チェックテスト
+  - セッション管理テスト
+
+- **`ValidationResultTests.cs`**: バリデーション機能テスト
+  - プロパティ初期化テスト
+  - エラー条件テスト
+  - 境界値テスト
+
+### 2. テストカテゴリ体系
+
+```csharp
+[TestCategory("UnitTest")]           // 単体テスト
+[TestCategory("IntegrationTest")]    // 統合テスト  
+[TestCategory("ScenarioTest")]       // シナリオテスト
+[TestCategory("ErrorHandling")]      // エラーハンドリング
+[TestCategory("Performance")]        // パフォーマンス
+[TestCategory("Security")]           // セキュリティ
+```
+
+### 3. 規約適用後のテスト実行方法
+
+**単体テストのみ実行** (新しいカテゴリ体系):
+```powershell
+# 単体テストのみ実行
+dotnet test --filter "TestCategory=UnitTest"
+
+# 統合テスト実行（データベース必要）
+dotnet test --filter "TestCategory=IntegrationTest"
+
+# セキュリティテスト実行
+dotnet test --filter "TestCategory=Security"
+
+# エラーハンドリングテスト実行
+dotnet test --filter "TestCategory=ErrorHandling"
+```
+
+**詳細ログ出力** (XML文書コメント情報含む):
+```powershell
+# 詳細出力でテスト実行
+dotnet test --logger "console;verbosity=detailed"
+
+# テストメソッドの説明も含めて出力
+dotnet test --logger "console;verbosity=diagnostic"
+```
+
+### 4. VSCode Test Explorerでの新機能
+
+1. **テストカテゴリ別表示**: 
+   - Test Explorerでカテゴリ別にグループ化表示
+   - 各テストメソッドにXML文書コメントの説明表示
+
+2. **リージョン別テスト実行**:
+   - コード内の #region 単位でのテスト実行が可能
+   - 初期化、実行、クリーンアップの段階別実行
+
+3. **モック検証機能**:
+   - Moq による依存関係テストの詳細ログ
+   - アサーション失敗時の詳細なモック呼び出し履歴
+
+---
+
+## 🗂️ テストデータの活用
+
+### 1. 更新されたテストデータファイル
+
+#### **`Tests/TestData/terminal_test_data.csv`**
+```csv
+No,端末製造番号1,端末製造番号2,機器PINコード,納品予定日,商品コード,商品名
+1,123456789012345,123456789012346,12345,2023/12/01,ABCD1234,テスト商品1
+2,234567890123456,234567890123457,23456,2023/12/02,EFGH5678,テスト商品2
+...（10件のテストデータ）
+```
+
+#### **`Tests/TestData/sim_test_data.csv`**  
+```csv
+No,端末電話番号,加入者コード,製造番号（ICカード）,ネットワーク暗証番号,PINロック解除,機器PINコード,納品予定日,受注日
+1,08012345678,12345678,8981000000000000001,1234,ABC12345,12345,2023/12/01,2023/11/15
+2,08023456789,23456789,8981000000000000002,2345,DEF23456,23456,2023/12/02,2023/11/16
+...（10件のテストデータ）
+```
+
+### 2. データドリブンテストの実行
+
+**CSVファイルを使ったテスト**:
+```powershell
+# テストデータファイル指定実行
+dotnet test --filter "TestCategory=DataDriven"
+
+# 特定のデータファイルのみテスト
+dotnet test --filter "FullyQualifiedName~TerminalCsvFileTest"
+```
+
+### 3. テストデータ検証
+
+**事前チェック**:
+```powershell
+# テストデータファイル存在確認
+Test-Path "Tests/TestData/terminal_test_data.csv"
+Test-Path "Tests/TestData/sim_test_data.csv"
+
+# CSVファイル構造確認
+Get-Content "Tests/TestData/terminal_test_data.csv" | Select-Object -First 3
+```
+
+---
 
 ### 2. NuGetパッケージエラー
 
@@ -477,17 +613,29 @@ dotnet test
 2. ✅ **統合テスト**: データベースを含む完全なワークフローテスト  
 3. ✅ **エラーハンドリングテスト**: 異常系処理の検証
 4. ✅ **シナリオテスト**: ユーザーストーリーベースのテスト
-5. ✅ **デバッグ実行**: ブレークポイントを使った詳細なデバッグ
+5. ✅ **セキュリティテスト**: 認証・認可機能のテスト (**新規追加**)
+6. ✅ **デバッグ実行**: ブレークポイントを使った詳細なデバッグ
 
 **重要なポイント**:
+- C#コーディング規約適用により、テストコードの品質が向上
+- XML文書コメントにより、テストの目的と期待値が明確化
+- #region/#endregion によるコード構造化で可読性向上
+- 新しいテストカテゴリ体系で効率的なテスト実行が可能
+- 更新されたテストデータファイルでより実用的なテストを実施
 - テスト実行前に必ずプロジェクトをビルドする
 - 統合テストはデータベース環境が必要
 - エラーが発生した場合は、まずビルドエラーを確認する
 - 定期的にテストを実行し、品質を維持する
+
+**C#コーディング規約準拠による改善点**:
+- **保守性向上**: XML文書化により、テストの意図が明確
+- **可読性向上**: リージョン分割と適切な命名規約の適用
+- **拡張性向上**: テストカテゴリ体系による柔軟なテスト実行
+- **品質向上**: より包括的なテストカバレッジの実現
 
 **問い合わせ先**:
 テスト実行に関する問題は、開発チームまでお問い合わせください。
 
 ---
 
-*最終更新日: 2025/8/26*
+*最終更新日: 2025/8/27 (C#コーディング規約対応版)*
