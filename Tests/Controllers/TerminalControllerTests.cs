@@ -15,11 +15,35 @@ namespace HX.Terminal.Tests.Controllers
     [TestClass]
     public class TerminalControllerTests
     {
+        #region フィールド
+
+        /// <summary>
+        /// テスト対象のコントローラー
+        /// </summary>
         private TerminalController controller;
+
+        /// <summary>
+        /// 端末登録ビジネスロジックのモック
+        /// </summary>
         private Mock<TerminalRegistBusinessLogic> mockTerminalLogic;
+
+        /// <summary>
+        /// SIM登録ビジネスロジックのモック
+        /// </summary>
         private Mock<SimRegistBusinessLogic> mockSimLogic;
+
+        /// <summary>
+        /// 端末-SIM紐付けビジネスロジックのモック
+        /// </summary>
         private Mock<TerminalSimHimodukeBusinessLogic> mockHimodukeLogic;
 
+        #endregion
+
+        #region テスト初期化・終了処理
+
+        /// <summary>
+        /// テスト初期化処理
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -29,9 +53,28 @@ namespace HX.Terminal.Tests.Controllers
             mockHimodukeLogic = new Mock<TerminalSimHimodukeBusinessLogic>();
         }
 
+        /// <summary>
+        /// テスト終了処理
+        /// </summary>
+        [TestCleanup]
+        public void Cleanup()
+        {
+            controller?.Dispose();
+            controller = null;
+            mockTerminalLogic = null;
+            mockSimLogic = null;
+            mockHimodukeLogic = null;
+        }
+
+        #endregion
+
         #region トップ画面テスト
 
+        /// <summary>
+        /// Top画面アクション_権限がある場合_正常にViewを返すことを検証
+        /// </summary>
         [TestMethod]
+        [TestCategory("Controller")]
         public void Top_権限がある場合_Viewを返す()
         {
             // Arrange
@@ -41,7 +84,7 @@ namespace HX.Terminal.Tests.Controllers
             var result = controller.Top();
 
             // Assert
-            Assert.IsInstanceOfType(result, typeof(ViewResult));
+            Assert.IsInstanceOfType(result, typeof(ViewResult), "ViewResultが返される必要があります");
         }
 
         #endregion

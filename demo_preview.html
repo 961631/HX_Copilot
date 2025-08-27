@@ -530,18 +530,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
+        // ========================================
         // デモ用JavaScript - 画面挙動テスト対応
+        // ========================================
+
+        /**
+         * アップロードファイル管理オブジェクト
+         * @type {Object}
+         */
         let uploadedFiles = {
             terminal: false,
             sim: false
         };
 
+        /**
+         * 紐付けデータ配列
+         * @type {Array}
+         */
         let bindingData = [];
 
+        /**
+         * ファイルアップロードのシミュレーション処理
+         * @param {string} type - ファイルタイプ（'terminal' または 'sim'）
+         */
         function demoFileUpload(type) {
-            var fileInfo = document.getElementById(type + 'FileInfo');
-            var executeBtn = document.getElementById('executeBtn');
-            var button = event.target;
+            const fileInfo = document.getElementById(type + 'FileInfo');
+            const executeBtn = document.getElementById('executeBtn');
+            const button = event.target;
             
             // ボタンを無効化
             button.disabled = true;
@@ -549,6 +564,7 @@
             
             // ファイル選択をシミュレート（1-3秒のランダム待機）
             const delay = Math.random() * 2000 + 1000;
+            
             setTimeout(function() {
                 fileInfo.style.display = 'block';
                 uploadedFiles[type] = true;
@@ -558,8 +574,8 @@
                 button.textContent = type === 'terminal' ? '端末データ登録' : 'SIMデータ登録';
                 button.className = 'btn btn-success';
                 
-                showMessage('success', type + 'データファイルが正常に選択されました。レコード数: ' + 
-                    (type === 'terminal' ? '150件' : '200件'));
+                const recordCount = type === 'terminal' ? '150件' : '200件';
+                showMessage('success', `${type}データファイルが正常に選択されました。レコード数: ${recordCount}`);
                 
                 // 両方のファイルが選択されたら実行ボタンを表示
                 if (uploadedFiles.terminal && uploadedFiles.sim) {
@@ -569,14 +585,29 @@
             }, delay);
         }
 
+        /**
+         * メッセージ表示処理
+         * @param {string} type - メッセージタイプ（'success', 'warning', 'danger', 'info'）
+         * @param {string} message - 表示メッセージ
+         */
         function showMessage(type, message) {
-            var messageArea = document.getElementById('messageArea');
-            var messageText = document.getElementById('messageText');
+            const messageArea = document.getElementById('messageArea');
+            const messageText = document.getElementById('messageText');
             
-            messageArea.className = 'alert alert-' + type + ' alert-dismissible';
-            messageText.innerHTML = '<strong>' + 
-                (type === 'success' ? '成功: ' : type === 'warning' ? '警告: ' : type === 'danger' ? 'エラー: ' : '') + 
-                '</strong>' + message;
+            if (!messageArea || !messageText) {
+                console.warn('メッセージ表示エリアが見つかりません');
+                return;
+            }
+
+            const typeLabels = {
+                'success': '成功: ',
+                'warning': '警告: ',
+                'danger': 'エラー: ',
+                'info': '情報: '
+            };
+
+            messageArea.className = `alert alert-${type} alert-dismissible`;
+            messageText.innerHTML = `<strong>${typeLabels[type] || ''}</strong>${message}`;
             messageArea.style.display = 'block';
             
             // 5秒後に非表示（成功メッセージ以外は手動で閉じる）
@@ -587,8 +618,17 @@
             }
         }
 
+        /**
+         * 登録実行処理のシミュレーション
+         */
         function showSuccess() {
             const executeBtn = document.getElementById('executeBtn');
+            
+            if (!executeBtn) {
+                console.warn('実行ボタンが見つかりません');
+                return;
+            }
+
             executeBtn.disabled = true;
             executeBtn.textContent = '登録処理中...';
             executeBtn.className = 'btn btn-warning';
@@ -605,8 +645,17 @@
             }, 2300);
         }
 
+        /**
+         * 紐付け登録処理のシミュレーション
+         */
         function showBindingSuccess() {
             const button = event.target;
+            
+            if (!button) {
+                console.warn('紐付けボタンが見つかりません');
+                return;
+            }
+
             button.disabled = true;
             button.textContent = '処理中...';
             button.className = 'btn btn-warning btn-lg';

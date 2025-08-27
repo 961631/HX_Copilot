@@ -16,9 +16,25 @@ namespace HX.Terminal.Tests.BusinessLogic
     [TestClass]
     public class TerminalRegistBusinessLogicTests
     {
+        #region フィールド
+
+        /// <summary>
+        /// テスト対象のビジネスロジック
+        /// </summary>
         private TerminalRegistBusinessLogic businessLogic;
+
+        /// <summary>
+        /// HTTPファイルのモック
+        /// </summary>
         private Mock<HttpPostedFileBase> mockFile;
 
+        #endregion
+
+        #region テスト初期化・終了処理
+
+        /// <summary>
+        /// テスト初期化処理
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -26,9 +42,25 @@ namespace HX.Terminal.Tests.BusinessLogic
             mockFile = new Mock<HttpPostedFileBase>();
         }
 
+        /// <summary>
+        /// テスト終了処理
+        /// </summary>
+        [TestCleanup]
+        public void Cleanup()
+        {
+            businessLogic = null;
+            mockFile = null;
+        }
+
+        #endregion
+
         #region CSVファイルバリデーションテスト
 
+        /// <summary>
+        /// CSVファイルバリデーション_ファイルが未選択の場合_エラーメッセージを返すことを検証
+        /// </summary>
         [TestMethod]
+        [TestCategory("Validation")]
         public void ValidateCsvFile_ファイルが未選択の場合_エラーメッセージを返す()
         {
             // Arrange
@@ -38,11 +70,15 @@ namespace HX.Terminal.Tests.BusinessLogic
             var result = businessLogic.ValidateCsvFile(nullFile);
 
             // Assert
-            Assert.IsFalse(result.IsValid);
-            Assert.AreEqual("ファイルが選択されていません。", result.Errors[0]);
+            Assert.IsFalse(result.IsValid, "バリデーションは失敗する必要があります");
+            Assert.AreEqual("ファイルが選択されていません。", result.Errors[0], "適切なエラーメッセージが返される必要があります");
         }
 
+        /// <summary>
+        /// CSVファイルバリデーション_ファイルサイズが0の場合_エラーメッセージを返すことを検証
+        /// </summary>
         [TestMethod]
+        [TestCategory("Validation")]
         public void ValidateCsvFile_ファイルサイズが0の場合_エラーメッセージを返す()
         {
             // Arrange

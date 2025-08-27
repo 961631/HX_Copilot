@@ -11,10 +11,30 @@ namespace HX.Terminal.Controllers
     /// </summary>
     public class TerminalController : BaseController
     {
+        #region フィールド
+
+        /// <summary>
+        /// 端末登録ビジネスロジック
+        /// </summary>
         private readonly TerminalRegistBusinessLogic terminalLogic;
+
+        /// <summary>
+        /// SIM登録ビジネスロジック
+        /// </summary>
         private readonly SimRegistBusinessLogic simLogic;
+
+        /// <summary>
+        /// 端末-SIM紐付けビジネスロジック
+        /// </summary>
         private readonly TerminalSimHimodukeBusinessLogic himodukeLogic;
 
+        #endregion
+
+        #region コンストラクタ
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public TerminalController()
         {
             terminalLogic = new TerminalRegistBusinessLogic();
@@ -22,9 +42,14 @@ namespace HX.Terminal.Controllers
             himodukeLogic = new TerminalSimHimodukeBusinessLogic();
         }
 
+        #endregion
+
+        #region アクションメソッド
+
         /// <summary>
         /// トップ画面
         /// </summary>
+        /// <returns>アクション実行結果</returns>
         [HttpGet]
         public ActionResult Top()
         {
@@ -40,9 +65,11 @@ namespace HX.Terminal.Controllers
         /// <summary>
         /// KDDI受領データ登録画面
         /// </summary>
+        /// <returns>アクション実行結果</returns>
         [HttpGet]
         public ActionResult Regist()
         {
+            // 権限チェック
             if (!CheckAuthorization())
             {
                 return RedirectToAction("Error", "Home");
@@ -54,6 +81,7 @@ namespace HX.Terminal.Controllers
         /// <summary>
         /// 端末データCSVアップロード
         /// </summary>
+        /// <returns>JSON形式のアップロード結果</returns>
         [HttpPost]
         public ActionResult UploadTerminalCsv()
         {
@@ -230,29 +258,20 @@ namespace HX.Terminal.Controllers
             var userRole = GetCurrentUserRole();
             return userRole == "21" || userRole == "60" || userRole == "99"; // 事務センター責任者、工業担当者、管理者権限
         }
-    }
 
-    /// <summary>
-    /// 基底コントローラー
-    /// </summary>
-    public abstract class BaseController : Controller
-    {
-        /// <summary>
-        /// 現在のユーザーIDを取得
-        /// </summary>
-        protected string GetCurrentUserId()
-        {
-            // セッションまたは認証情報からユーザーIDを取得
-            return Session["UserId"]?.ToString() ?? "system";
-        }
+        #endregion
+
+        #region プライベートメソッド
 
         /// <summary>
-        /// 現在のユーザーロールを取得
+        /// 権限チェック（内部メソッド）
         /// </summary>
-        protected string GetCurrentUserRole()
+        /// <returns>権限チェック結果</returns>
+        private bool CheckAuthorization()
         {
-            // セッションまたは認証情報からユーザーロールを取得
-            return Session["UserRole"]?.ToString() ?? "";
+            return base.CheckAuthorization();
         }
+
+        #endregion
     }
 }

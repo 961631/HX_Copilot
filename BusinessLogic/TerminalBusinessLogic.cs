@@ -14,16 +14,34 @@ namespace HX.Terminal.BusinessLogic
     /// </summary>
     public class TerminalRegistBusinessLogic
     {
+        #region フィールド
+
+        /// <summary>
+        /// 端末登録データアクセス
+        /// </summary>
         private readonly TerminalRegistDataAccess dataAccess;
 
+        #endregion
+
+        #region コンストラクタ
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public TerminalRegistBusinessLogic()
         {
             dataAccess = new TerminalRegistDataAccess();
         }
 
+        #endregion
+
+        #region パブリックメソッド
+
         /// <summary>
         /// CSVファイルバリデーション
         /// </summary>
+        /// <param name="file">アップロードファイル</param>
+        /// <returns>バリデーション結果</returns>
         public ValidationResult ValidateCsvFile(HttpPostedFileBase file)
         {
             var result = new ValidationResult();
@@ -48,6 +66,11 @@ namespace HX.Terminal.BusinessLogic
 
         /// <summary>
         /// 端末CSVファイル処理
+        /// </summary>
+        /// <param name="file">アップロードファイル</param>
+        /// <param name="programId">プログラムID</param>
+        /// <param name="userId">ユーザーID</param>
+        /// <returns>処理結果</returns>
         /// </summary>
         public ValidationResult ProcessTerminalCsvFile(HttpPostedFileBase file, string programId, string userId)
         {

@@ -12,16 +12,36 @@ namespace HX.Terminal.DataAccess
     /// </summary>
     public class BaseDataAccess
     {
+        #region フィールド
+
+        /// <summary>
+        /// 接続文字列
+        /// </summary>
         protected string connectionString;
 
+        #endregion
+
+        #region コンストラクタ
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public BaseDataAccess()
         {
             connectionString = ConfigurationManager.ConnectionStrings["HXConnectionString"].ConnectionString;
         }
 
+        #endregion
+
+        #region プロテクトメソッド
+
         /// <summary>
         /// ヘッダー情報設定
         /// </summary>
+        /// <typeparam name="T">モデル型</typeparam>
+        /// <param name="model">モデルオブジェクト</param>
+        /// <param name="programId">プログラムID</param>
+        /// <param name="userId">ユーザーID</param>
         protected void SetHeaderInfo<T>(T model, string programId, string userId) where T : class
         {
             var now = DateTime.Now;
@@ -34,6 +54,8 @@ namespace HX.Terminal.DataAccess
             type.GetProperty("ModifiedProgramId")?.SetValue(model, programId);
             type.GetProperty("ModifiedUserId")?.SetValue(model, userId);
         }
+
+        #endregion
     }
 
     /// <summary>
@@ -41,9 +63,13 @@ namespace HX.Terminal.DataAccess
     /// </summary>
     public class TerminalRegistDataAccess : BaseDataAccess
     {
+        #region パブリックメソッド
+
         /// <summary>
         /// 端末情報重複チェック
         /// </summary>
+        /// <param name="terminalNo">端末製造番号</param>
+        /// <returns>重複している場合true</returns>
         public bool CheckTerminalDuplicate(string terminalNo)
         {
             using (var connection = new SqlConnection(connectionString))
