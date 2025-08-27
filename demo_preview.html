@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>救急情報管理システム - 画面プレビュー</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/terminal.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .panel {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .panel-heading {
+            border-radius: 8px 8px 0 0 !important;
+            font-weight: bold;
+        }
+        .btn {
+            border-radius: 4px;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .navbar-nav > li > a {
+            color: white !important;
+        }
+        .page-header {
+            margin-top: 0;
+            padding-top: 20px;
+            background: white;
+            margin: 0 -15px 20px -15px;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .demo-section {
+            margin: 30px 0;
+        }
+        .screen-demo {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            background: white;
+            min-height: 400px;
+        }
+        .screen-header {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            border-radius: 6px 6px 0 0;
+            font-weight: bold;
+        }
+        .screen-content {
+            padding: 20px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-active { background-color: #5cb85c; }
+        .status-warning { background-color: #f0ad4e; }
+        .status-error { background-color: #d9534f; }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <span class="navbar-brand">救急情報管理システム　みまもりホン後継機対応</span>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#top">トップ</a></li>
+                <li><a href="#regist">登録</a></li>
+                <li><a href="#himoduke">紐付け</a></li>
+                <li><a href="#result">結果</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>画面プレビュー <small>システム画面の動作確認</small></h1>
+            <p class="text-muted">以下は各画面のプレビューです。実際のシステムでは、データベース接続とサーバーサイド処理が動作します。</p>
+        </div>
+
+        <!-- 1. トップ画面 -->
+        <div id="top" class="demo-section">
+            <div class="screen-demo">
+                <div class="screen-header">
+                    <span class="status-indicator status-active"></span>
+                    画面1: トップメニュー (Top.aspx)
+                </div>
+                <div class="screen-content">
+                    <h2>新規端末情報登録</h2>
+                    <p class="lead">救急情報管理システム　みまもりホン後継機対応</p>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">KDDI受領データ登録</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p>端末データとSIMデータのCSVファイルをアップロードして登録します。</p>
+                                    <div class="text-center">
+                                        <a href="#regist" class="btn btn-primary btn-lg">
+                                            登録
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">端末-SIM情報紐付け登録</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p>端末製造番号とSIM情報を紐付けて登録します。</p>
+                                    <div class="text-center">
+                                        <a href="#himoduke" class="btn btn-info btn-lg">
+                                            登録
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">SIM情報紐付け結果一覧</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p>登録済みの紐付け情報を一覧表示し、削除操作を行います。</p>
+                                    <div class="text-center">
+                                        <a href="#result" class="btn btn-success btn-lg">
+                                            一覧表示
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 登録画面 -->
+        <div id="regist" class="demo-section">
+            <div class="screen-demo">
+                <div class="screen-header">
+                    <span class="status-indicator status-active"></span>
+                    画面2: KDDI受領データ登録 (Regist.aspx)
+                </div>
+                <div class="screen-content">
+                    <h2>KDDI受領データ登録</h2>
+                    
+                    <!-- メッセージ表示エリア -->
+                    <div id="messageArea" class="alert alert-info" style="display: none;">
+                        <span id="messageText">メッセージがここに表示されます</span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4>端末データ登録</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" onclick="demoFileUpload('terminal')">
+                                            端末データ登録
+                                        </button>
+                                        <small class="help-block">CSVファイルをアップロードしてください</small>
+                                    </div>
+                                    <div class="well well-sm" style="display: none;" id="terminalFileInfo">
+                                        <strong>選択ファイル:</strong> terminal_data.csv<br>
+                                        <strong>レコード数:</strong> 150件<br>
+                                        <strong>状態:</strong> <span class="text-success">検証完了</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4>SIMデータ登録</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary" onclick="demoFileUpload('sim')">
+                                            SIMデータ登録
+                                        </button>
+                                        <small class="help-block">CSVファイルをアップロードしてください</small>
+                                    </div>
+                                    <div class="well well-sm" style="display: none;" id="simFileInfo">
+                                        <strong>選択ファイル:</strong> sim_data.csv<br>
+                                        <strong>レコード数:</strong> 200件<br>
+                                        <strong>状態:</strong> <span class="text-success">検証完了</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-default" onclick="goToSection('top')">
+                                メニューへ戻る
+                            </button>
+                            <button type="button" class="btn btn-success" onclick="showSuccess()" style="display: none;" id="executeBtn">
+                                データ登録実行
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 紐付け画面 -->
+        <div id="himoduke" class="demo-section">
+            <div class="screen-demo">
+                <div class="screen-header">
+                    <span class="status-indicator status-active"></span>
+                    画面3: 端末-SIM情報紐付け登録 (Himoduke.aspx)
+                </div>
+                <div class="screen-content">
+                    <h2>端末-SIM情報紐付け登録</h2>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4>端末情報</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>端末製造番号:</label>
+                                        <input type="text" class="form-control" value="T001234567890" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>機種:</label>
+                                        <input type="text" class="form-control" value="みまもりホン SP-01" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>登録日:</label>
+                                        <input type="text" class="form-control" value="2025/08/27" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h4>SIM情報選択</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label>ICCID:</label>
+                                        <select class="form-control">
+                                            <option>選択してください</option>
+                                            <option value="89810000000000000001">89810000000000000001</option>
+                                            <option value="89810000000000000002">89810000000000000002</option>
+                                            <option value="89810000000000000003">89810000000000000003</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>IMSI:</label>
+                                        <input type="text" class="form-control" value="440500000000001" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>PIN1:</label>
+                                        <input type="password" class="form-control" value="1234" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-primary btn-lg" onclick="showBindingSuccess()">
+                                紐付け登録実行
+                            </button>
+                            <button type="button" class="btn btn-default" onclick="goToSection('top')">
+                                メニューへ戻る
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 結果一覧画面 -->
+        <div id="result" class="demo-section">
+            <div class="screen-demo">
+                <div class="screen-header">
+                    <span class="status-indicator status-active"></span>
+                    画面4: SIM情報紐付け結果一覧 (Result.aspx)
+                </div>
+                <div class="screen-content">
+                    <h2>SIM情報紐付け結果一覧</h2>
+                    
+                    <div class="well">
+                        <strong>検索条件:</strong>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="端末製造番号">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="ICCID">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                    <option>全て</option>
+                                    <option>紐付け済み</option>
+                                    <option>未紐付け</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-info">検索</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr class="info">
+                                    <th>端末製造番号</th>
+                                    <th>ICCID</th>
+                                    <th>IMSI</th>
+                                    <th>紐付け日時</th>
+                                    <th>状態</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>T001234567890</td>
+                                    <td>89810000000000000001</td>
+                                    <td>440500000000001</td>
+                                    <td>2025/08/27 10:30</td>
+                                    <td><span class="label label-success">紐付け済み</span></td>
+                                    <td>
+                                        <button class="btn btn-xs btn-danger" onclick="showDeleteConfirm()">削除</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>T001234567891</td>
+                                    <td>89810000000000000002</td>
+                                    <td>440500000000002</td>
+                                    <td>2025/08/27 11:15</td>
+                                    <td><span class="label label-success">紐付け済み</span></td>
+                                    <td>
+                                        <button class="btn btn-xs btn-danger" onclick="showDeleteConfirm()">削除</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>T001234567892</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><span class="label label-warning">未紐付け</span></td>
+                                    <td>
+                                        <button class="btn btn-xs btn-info" onclick="goToSection('himoduke')">紐付け</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination">
+                                <li><a href="#">&laquo;</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn btn-default" onclick="goToSection('top')">
+                                メニューへ戻る
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        // デモ用JavaScript
+        function demoFileUpload(type) {
+            var fileInfo = document.getElementById(type + 'FileInfo');
+            var executeBtn = document.getElementById('executeBtn');
+            
+            // ファイル選択をシミュレート
+            setTimeout(function() {
+                fileInfo.style.display = 'block';
+                showMessage('success', type + 'データファイルが正常に選択されました。');
+                
+                // 両方のファイルが選択されたら実行ボタンを表示
+                if (document.getElementById('terminalFileInfo').style.display === 'block' && 
+                    document.getElementById('simFileInfo').style.display === 'block') {
+                    executeBtn.style.display = 'inline-block';
+                }
+            }, 1000);
+        }
+
+        function showMessage(type, message) {
+            var messageArea = document.getElementById('messageArea');
+            var messageText = document.getElementById('messageText');
+            
+            messageArea.className = 'alert alert-' + type;
+            messageText.textContent = message;
+            messageArea.style.display = 'block';
+            
+            // 3秒後に非表示
+            setTimeout(function() {
+                messageArea.style.display = 'none';
+            }, 3000);
+        }
+
+        function showSuccess() {
+            showMessage('success', 'データの登録が正常に完了しました。登録件数: 端末150件、SIM200件');
+        }
+
+        function showBindingSuccess() {
+            showMessage('success', '端末とSIMの紐付けが正常に完了しました。');
+            setTimeout(function() {
+                goToSection('result');
+            }, 2000);
+        }
+
+        function showDeleteConfirm() {
+            if (confirm('この紐付け情報を削除してもよろしいですか？')) {
+                showMessage('success', '紐付け情報を削除しました。');
+            }
+        }
+
+        function goToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 画面遷移のスムーススクロール
+        $(document).ready(function() {
+            $('a[href^="#"]').click(function(e) {
+                e.preventDefault();
+                var target = $($(this).attr('href'));
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top - 70
+                    }, 800);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
