@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WinMerge File Compare Report</title>
+<style>
+<!--
+table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); }
+th { position: sticky; top: 0; }
+td,th { word-break: break-all; font-size: 12pt; padding: 0 3px; }
+tr { vertical-align: top; }
+.title { font-weight: bold; color: white; background-color: blue; vertical-align: top; text-align: center; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}
+.sf3b2 {color: #000000; background-color: #ffffff; }
+.sf3b5 {color: #000000; background-color: #0078d7; }
+.sf3b14 {color: #000000; background-color: #ffa0a0; }
+.sf3b16 {color: #000000; background-color: #f1e2ad; }
+.sf3b18 {color: #000000; background-color: #ffaa82; }
+.sf3b19 {color: #000000; background-color: #c8816c; }
+.sf6b2 {color: #ffffff; background-color: #ffffff; }
+.sf6b5 {color: #ffffff; background-color: #0078d7; }
+.sf6b14 {color: #ffffff; background-color: #ffa0a0; }
+.sf6b16 {color: #ffffff; background-color: #f1e2ad; }
+.sf6b18 {color: #ffffff; background-color: #ffaa82; }
+.sf6b19 {color: #ffffff; background-color: #c8816c; }
+.sf7b2 {color: #0000ff; background-color: #ffffff; font-weight: bold; }
+.sf7b5 {color: #0000ff; background-color: #0078d7; font-weight: bold; }
+.sf7b14 {color: #0000ff; background-color: #ffa0a0; font-weight: bold; }
+.sf7b16 {color: #0000ff; background-color: #f1e2ad; font-weight: bold; }
+.sf7b18 {color: #0000ff; background-color: #ffaa82; font-weight: bold; }
+.sf7b19 {color: #0000ff; background-color: #c8816c; font-weight: bold; }
+.sf8b2 {color: #800080; background-color: #ffffff; }
+.sf8b5 {color: #800080; background-color: #0078d7; }
+.sf8b14 {color: #800080; background-color: #ffa0a0; }
+.sf8b16 {color: #800080; background-color: #f1e2ad; }
+.sf8b18 {color: #800080; background-color: #ffaa82; }
+.sf8b19 {color: #800080; background-color: #c8816c; }
+.sf9b2 {color: #008000; background-color: #ffffff; }
+.sf9b5 {color: #008000; background-color: #0078d7; }
+.sf9b14 {color: #008000; background-color: #ffa0a0; }
+.sf9b16 {color: #008000; background-color: #f1e2ad; }
+.sf9b18 {color: #008000; background-color: #ffaa82; }
+.sf9b19 {color: #008000; background-color: #c8816c; }
+.sf10b2 {color: #ff0000; background-color: #ffffff; }
+.sf10b5 {color: #ff0000; background-color: #0078d7; }
+.sf10b14 {color: #ff0000; background-color: #ffa0a0; }
+.sf10b16 {color: #ff0000; background-color: #f1e2ad; }
+.sf10b18 {color: #ff0000; background-color: #ffaa82; }
+.sf10b19 {color: #ff0000; background-color: #c8816c; }
+.sf11b2 {color: #606060; background-color: #ffffff; }
+.sf11b5 {color: #606060; background-color: #0078d7; }
+.sf11b14 {color: #606060; background-color: #ffa0a0; }
+.sf11b16 {color: #606060; background-color: #f1e2ad; }
+.sf11b18 {color: #606060; background-color: #ffaa82; }
+.sf11b19 {color: #606060; background-color: #c8816c; }
+.sf12b2 {color: #800000; background-color: #ffffff; }
+.sf12b5 {color: #800000; background-color: #0078d7; }
+.sf12b14 {color: #800000; background-color: #ffa0a0; }
+.sf12b16 {color: #800000; background-color: #f1e2ad; }
+.sf12b18 {color: #800000; background-color: #ffaa82; }
+.sf12b19 {color: #800000; background-color: #c8816c; }
+.sf13b2 {color: #0080c0; background-color: #ffffff; }
+.sf13b5 {color: #0080c0; background-color: #0078d7; }
+.sf13b14 {color: #0080c0; background-color: #ffa0a0; }
+.sf13b16 {color: #0080c0; background-color: #f1e2ad; }
+.sf13b18 {color: #0080c0; background-color: #ffaa82; }
+.sf13b19 {color: #0080c0; background-color: #c8816c; }
+.sf15b2 {color: #000000; background-color: #ffffff; }
+.sf15b5 {color: #000000; background-color: #0078d7; }
+.sf15b14 {color: #000000; background-color: #ffa0a0; }
+.sf15b16 {color: #000000; background-color: #f1e2ad; }
+.sf15b18 {color: #000000; background-color: #ffaa82; }
+.sf15b19 {color: #000000; background-color: #c8816c; }
+.sf17b2 {color: #000000; background-color: #ffffff; }
+.sf17b5 {color: #000000; background-color: #0078d7; }
+.sf17b14 {color: #000000; background-color: #ffa0a0; }
+.sf17b16 {color: #000000; background-color: #f1e2ad; }
+.sf17b18 {color: #000000; background-color: #ffaa82; }
+.sf17b19 {color: #000000; background-color: #c8816c; }
+.sf20b2 {color: #000080; background-color: #ffffff; }
+.sf20b5 {color: #000080; background-color: #0078d7; }
+.sf20b14 {color: #000080; background-color: #ffa0a0; }
+.sf20b16 {color: #000080; background-color: #f1e2ad; }
+.sf20b18 {color: #000080; background-color: #ffaa82; }
+.sf20b19 {color: #000080; background-color: #c8816c; }
+.sf21b2 {color: #0080c0; background-color: #ffffff; }
+.sf21b5 {color: #0080c0; background-color: #0078d7; }
+.sf21b14 {color: #0080c0; background-color: #ffa0a0; }
+.sf21b16 {color: #0080c0; background-color: #f1e2ad; }
+.sf21b18 {color: #0080c0; background-color: #ffaa82; }
+.sf21b19 {color: #0080c0; background-color: #c8816c; }
+.sf3b2i {color: #ababab; background-color: #ffffff; }
+.sf3b5i {color: #005190; background-color: #0078d7; }
+.sf3b14i {color: #ab6b6b; background-color: #ffa0a0; }
+.sf3b16i {color: #a19774; background-color: #f1e2ad; }
+.sf3b18i {color: #ab7257; background-color: #ffaa82; }
+.sf3b19i {color: #865749; background-color: #c8816c; }
+.sf6b2i {color: #ffffff; background-color: #ffffff; }
+.sf6b5i {color: #54a4e4; background-color: #0078d7; }
+.sf6b14i {color: #ffbfbf; background-color: #ffa0a0; }
+.sf6b16i {color: #f5ebc8; background-color: #f1e2ad; }
+.sf6b18i {color: #ffc6ab; background-color: #ffaa82; }
+.sf6b19i {color: #daaa9c; background-color: #c8816c; }
+.sf7b2i {color: #ababff; background-color: #ffffff; font-weight: bold; }
+.sf7b5i {color: #0051e4; background-color: #0078d7; font-weight: bold; }
+.sf7b14i {color: #ab6bbf; background-color: #ffa0a0; font-weight: bold; }
+.sf7b16i {color: #a197c8; background-color: #f1e2ad; font-weight: bold; }
+.sf7b18i {color: #ab72ab; background-color: #ffaa82; font-weight: bold; }
+.sf7b19i {color: #86579c; background-color: #c8816c; font-weight: bold; }
+.sf8b2i {color: #d5abd5; background-color: #ffffff; }
+.sf8b5i {color: #2a51bb; background-color: #0078d7; }
+.sf8b14i {color: #d56b96; background-color: #ffa0a0; }
+.sf8b16i {color: #cc979f; background-color: #f1e2ad; }
+.sf8b18i {color: #d57282; background-color: #ffaa82; }
+.sf8b19i {color: #b15772; background-color: #c8816c; }
+.sf9b2i {color: #abd5ab; background-color: #ffffff; }
+.sf9b5i {color: #007a90; background-color: #0078d7; }
+.sf9b14i {color: #ab966b; background-color: #ffa0a0; }
+.sf9b16i {color: #a1c274; background-color: #f1e2ad; }
+.sf9b18i {color: #ab9d57; background-color: #ffaa82; }
+.sf9b19i {color: #868149; background-color: #c8816c; }
+.sf10b2i {color: #ffabab; background-color: #ffffff; }
+.sf10b5i {color: #545190; background-color: #0078d7; }
+.sf10b14i {color: #ff6b6b; background-color: #ffa0a0; }
+.sf10b16i {color: #f59774; background-color: #f1e2ad; }
+.sf10b18i {color: #ff7257; background-color: #ffaa82; }
+.sf10b19i {color: #da5749; background-color: #c8816c; }
+.sf11b2i {color: #cbcbcb; background-color: #ffffff; }
+.sf11b5i {color: #1f71b0; background-color: #0078d7; }
+.sf11b14i {color: #cb8b8b; background-color: #ffa0a0; }
+.sf11b16i {color: #c1b794; background-color: #f1e2ad; }
+.sf11b18i {color: #cb9277; background-color: #ffaa82; }
+.sf11b19i {color: #a67769; background-color: #c8816c; }
+.sf12b2i {color: #d5abab; background-color: #ffffff; }
+.sf12b5i {color: #2a5190; background-color: #0078d7; }
+.sf12b14i {color: #d56b6b; background-color: #ffa0a0; }
+.sf12b16i {color: #cc9774; background-color: #f1e2ad; }
+.sf12b18i {color: #d57257; background-color: #ffaa82; }
+.sf12b19i {color: #b15749; background-color: #c8816c; }
+.sf13b2i {color: #abd5eb; background-color: #ffffff; }
+.sf13b5i {color: #007ad0; background-color: #0078d7; }
+.sf13b14i {color: #ab96aa; background-color: #ffa0a0; }
+.sf13b16i {color: #a1c2b3; background-color: #f1e2ad; }
+.sf13b18i {color: #ab9d96; background-color: #ffaa82; }
+.sf13b19i {color: #868187; background-color: #c8816c; }
+.sf15b2i {color: #ababab; background-color: #ffffff; }
+.sf15b5i {color: #005190; background-color: #0078d7; }
+.sf15b14i {color: #ab6b6b; background-color: #ffa0a0; }
+.sf15b16i {color: #a19774; background-color: #f1e2ad; }
+.sf15b18i {color: #ab7257; background-color: #ffaa82; }
+.sf15b19i {color: #865749; background-color: #c8816c; }
+.sf17b2i {color: #ababab; background-color: #ffffff; }
+.sf17b5i {color: #005190; background-color: #0078d7; }
+.sf17b14i {color: #ab6b6b; background-color: #ffa0a0; }
+.sf17b16i {color: #a19774; background-color: #f1e2ad; }
+.sf17b18i {color: #ab7257; background-color: #ffaa82; }
+.sf17b19i {color: #865749; background-color: #c8816c; }
+.sf20b2i {color: #ababd5; background-color: #ffffff; }
+.sf20b5i {color: #0051bb; background-color: #0078d7; }
+.sf20b14i {color: #ab6b96; background-color: #ffa0a0; }
+.sf20b16i {color: #a1979f; background-color: #f1e2ad; }
+.sf20b18i {color: #ab7282; background-color: #ffaa82; }
+.sf20b19i {color: #865772; background-color: #c8816c; }
+.sf21b2i {color: #abd5eb; background-color: #ffffff; }
+.sf21b5i {color: #007ad0; background-color: #0078d7; }
+.sf21b14i {color: #ab96aa; background-color: #ffa0a0; }
+.sf21b16i {color: #a1c2b3; background-color: #f1e2ad; }
+.sf21b18i {color: #ab9d96; background-color: #ffaa82; }
+.sf21b19i {color: #868187; background-color: #c8816c; }
+.cn {text-align: center; word-break: normal; color: #000000; background-color: #f0f0f0;}
+.ln {text-align: right; word-break: normal; color: #000000; background-color: #f0f0f0;}
+-->
+</style>
+</head>
+<body>
+<table style="width: 100%; border-collapse: collapse;">
+<colgroup>
+<col style="width: 0.5em;" />
+<col style="width: calc(100% / 2 - 0.5em);" />
+<col style="width: 0.5em;" />
+<col style="width: calc(100% / 2 - 0.5em);" />
+</colgroup>
+<thead>
+<tr>
+<th colspan="2" class="title">C:\Users\961631\Desktop\新規技術\GithubCopilot\6.2025年度検証\ファイル比較用\HX_Copilot-main\HX_Copilot-main\コーディング規約レビュー_mdver.md</th>
+<th colspan="2" class="title">C:\Users\961631\Desktop\新規技術\GithubCopilot\6.2025年度検証\ファイル比較用\HX_Copilot-main\HX_Copilot-main\コーディング規約レビュー_md修正ver.md</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="ln"><a id="d1" href="#d1">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; "># C#コーディング規約レビュー結果（</span><span class="sf17b16">詳細</span><span style="color: #000000; background-color: #efcb05; ">版</span><span style="color: #000000; background-color: #efcb05; ">）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; "># C#コーディング規約レビュー結果（</span><span class="sf17b16">修正</span><span style="color: #000000; background-color: #efcb05; ">版</span><span class="sf17b18">準拠</span><span style="color: #000000; background-color: #efcb05; ">）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**対象プロジェクト:** HX_Copilot &nbsp;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**対象プロジェクト:** HX_Copilot &nbsp;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**レビュー日:** 2025年9月4日 &nbsp;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**レビュー日:** 2025年9月4日 &nbsp;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**対象ファイル:** Document、Testsフォルダを除くC#ソースコード &nbsp;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**対象ファイル:** Document、Testsフォルダを除くC#ソースコード &nbsp;</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d2" href="#d2">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**規約バージョン:** C#コーディング規約Ver1.2</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**規約バージョン:** C#コーディング規約Ver1.2</span><span class="sf17b18">（修正版）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 1. フォーマット</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 1. フォーマット</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 1-1. スペース</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 1-1. スペース</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d3" href="#d3">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 半角スペース</span><span style="color: #000000; background-color: #efcb05; ">使用、全角スペース未使用</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 半角スペース</span><span class="sf17b18">のみ</span><span style="color: #000000; background-color: #efcb05; ">使用、全角スペース未使用</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 演算子前後の適切なスペース配置</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 演算子前後の適切なスペース配置</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d4" href="#d4">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- コメント</span><span class="sf17b16">内</span><span style="color: #000000; background-color: #efcb05; ">のスペース使用</span><span class="sf17b16">が</span><span style="color: #000000; background-color: #efcb05; ">適切</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- コメント</span><span class="sf17b16">&nbsp;"//" 直後</span><span style="color: #000000; background-color: #efcb05; ">のスペース使用</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">- カンマ後のスペース</span><span style="color: #000000; background-color: #efcb05; ">適切</span><span class="sf17b18">配置</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d5" href="#d5">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**</span><span class="sf17b16">具体例</span><span style="color: #000000; background-color: #efcb05; ">:**</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**</span><span class="sf17b16">確認箇所</span><span style="color: #000000; background-color: #efcb05; ">:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d6" href="#d6">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// </span><span class="sf17b18">良い例（</span><span style="color: #000000; background-color: #efcb05; ">Controllers/BaseController.cs 行40-42</span><span class="sf17b18">）</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// </span><span style="color: #000000; background-color: #efcb05; ">Controllers/BaseController.cs 行40-42</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">return userRole == ROLE_OFFICE_MANAGER || </span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">return userRole == ROLE_OFFICE_MANAGER || </span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; &nbsp; &nbsp;userRole == ROLE_INDUSTRIAL_STAFF || </span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; &nbsp; &nbsp;userRole == ROLE_INDUSTRIAL_STAFF || </span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; &nbsp; &nbsp;userRole == ROLE_ADMINISTRATOR;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; &nbsp; &nbsp;userRole == ROLE_ADMINISTRATOR;</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d7" href="#d7">.</a></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// BusinessLogic/TerminalBusinessLogic.cs 行85</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">var columns = line.Split(',');</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 1-2. インデント</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 1-2. インデント</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d8" href="#d8">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- タブ</span><span style="color: #000000; background-color: #efcb05; ">文字</span><span class="sf17b18">または</span><span style="color: #000000; background-color: #efcb05; ">スペース</span><span class="sf17b16">4文字で統</span><span style="color: #000000; background-color: #efcb05; ">一</span><span class="sf17b16">されている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- タブ</span><span class="sf17b18">（4</span><span style="color: #000000; background-color: #efcb05; ">文字</span><span style="color: #000000; background-color: #efcb05; ">スペース</span><span class="sf17b16">相当）を使用</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">- </span><span style="color: #000000; background-color: #efcb05; ">一</span><span class="sf17b16">貫したインデント適用</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d9" href="#d9">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 1-3. </span><span class="sf17b16">改</span><span style="color: #000000; background-color: #efcb05; ">行</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 1-3. </span><span class="sf17b16">空</span><span style="color: #000000; background-color: #efcb05; ">行</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d10" href="#d10">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- メソッド内</span><span style="color: #000000; background-color: #efcb05; ">で</span><span class="sf17b18">の</span><span style="color: #000000; background-color: #efcb05; ">適切な</span><span class="sf17b16">改</span><span style="color: #000000; background-color: #efcb05; ">行</span><span class="sf17b16">が実施されている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- メソッド内</span><span class="sf17b18">処理の切れ目</span><span style="color: #000000; background-color: #efcb05; ">で</span><span style="color: #000000; background-color: #efcb05; ">適切な</span><span class="sf17b16">空</span><span style="color: #000000; background-color: #efcb05; ">行</span><span class="sf17b16">使用</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">- 可読性向上に効果的</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d11" href="#d11">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 1-4. </span><span class="sf17b16">折返し</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 1-4. </span><span class="sf17b16">改行</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d12" href="#d12">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 長い</span><span class="sf17b16">行</span><span style="color: #000000; background-color: #efcb05; ">の適切な</span><span class="sf17b16">折り返し</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 長い</span><span class="sf17b16">式</span><span style="color: #000000; background-color: #efcb05; ">の適切な</span><span class="sf17b16">改行</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 2行目以降のインデント調整</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 2行目以降のインデント調整</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 1-5. {}</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 1-5. {}</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d13" href="#d13">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- { } が</span><span style="color: #000000; background-color: #efcb05; ">別行</span><span style="color: #000000; background-color: #efcb05; ">記述され</span><span class="sf17b16">、適切にネスト</span><span style="color: #000000; background-color: #efcb05; ">されている</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- { } が</span><span class="sf17b18">宣言と</span><span style="color: #000000; background-color: #efcb05; ">別行</span><span class="sf17b18">で</span><span style="color: #000000; background-color: #efcb05; ">記述され</span><span class="sf17b16">ている</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">- 改行後の記述が徹底</span><span style="color: #000000; background-color: #efcb05; ">されている</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d14" href="#d14">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 1-6. ファイル</span><span class="sf17b16">構成</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 1-6. ファイル</span><span class="sf17b16">分け</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** ❌ </span><span style="color: #000000; background-color: #efcb05; ">違反</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** ❌ </span><span class="sf17b18">重大な</span><span style="color: #000000; background-color: #efcb05; ">違反</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d15" href="#d15">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// Models/TerminalRegistModel.cs </span><span class="sf17b16">行69-75</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// Models/TerminalRegistModel.cs </span><span class="sf17b16">全体</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">&nbsp; &nbsp; &nbsp; &nbsp; #endregion</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">namespace HX.Terminal.Models</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">&nbsp; &nbsp; }</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">{</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">&nbsp; &nbsp; </span><span class="sf17b16">}</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">&nbsp; &nbsp; </span><span class="sf17b16">public class TerminalRegistModel { </span><span style="color: #000000; background-color: #efcb05; ">/</span><span class="sf17b18">* ... *</span><span style="color: #000000; background-color: #efcb05; ">/</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">}</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">&nbsp; &nbsp; </span><span class="sf17b18">public class SimRegistModel { </span><span style="color: #000000; background-color: #efcb05; ">/</span><span class="sf17b16">*</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">... *</span><span style="color: #000000; background-color: #efcb05; ">/</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">}</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">&nbsp; &nbsp; </span><span style="color: #000000; background-color: #efcb05; ">/</span><span style="color: #000000; background-color: #efcb05; ">/</span><span class="sf17b18">/</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">&lt;summary&gt;</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">&nbsp; &nbsp; public class </span><span class="sf17b16">TerminalSimHimodukeModel { /* ... */ }</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">&nbsp; &nbsp; </span><span style="color: #000000; background-color: #efcb05; ">/</span><span class="sf17b16">//</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">SIM情報登録モデル</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">}</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">&nbsp; &nbsp; </span><span style="color: #000000; background-color: #efcb05; ">/</span><span class="sf17b18">//</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">&lt;/summary&gt;</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">&nbsp; &nbsp; public class </span><span class="sf17b16">SimRegistModel</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d16" href="#d16">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span style="color: #000000; background-color: #efcb05; ">1つのファイルに3つのクラス</span><span class="sf17b18">（TerminalRegistModel、SimR<wbr>egistModel、TerminalSimHimodukeModel）</span><span style="color: #000000; background-color: #efcb05; ">が定義<wbr>されている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b18">**</span><span style="color: #000000; background-color: #efcb05; ">1つのファイルに3つのクラス</span><span style="color: #000000; background-color: #efcb05; ">が定義されている</span><span class="sf17b18">**</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約「</span><span class="sf17b16">1</span><span style="color: #000000; background-color: #efcb05; ">つのファイルに複数のクラス、インタフェース、列挙</span><span class="sf17b16">型</span><span style="color: #000000; background-color: #efcb05; ">を記述</span><span class="sf17b16">し</span><span style="color: #000000; background-color: #efcb05; ">な</span><span class="sf17b16">い</span><span style="color: #000000; background-color: #efcb05; ">」に</span><span style="color: #000000; background-color: #efcb05; ">違反<wbr></span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約「</span><span class="sf17b16">ファイルは一</span><span style="color: #000000; background-color: #efcb05; ">つのファイルに複数のクラス、インタフェース、列挙</span><span class="sf17b16">体</span><span style="color: #000000; background-color: #efcb05; ">を記述</span><span class="sf17b16">せず<wbr>、それぞれファイルとクラス、インタフェース、列挙体が1:1に</span><span style="color: #000000; background-color: #efcb05; ">な</span><span class="sf17b16">るように作成する<wbr></span><span style="color: #000000; background-color: #efcb05; ">」に</span><span class="sf17b18">明確に</span><span style="color: #000000; background-color: #efcb05; ">違反</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">-</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span style="color: #000000; background-color: #efcb05; ">TerminalRegistModel</span><span class="sf17b16">クラスの終了時に</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span style="color: #000000; background-color: #efcb05; ">}</span><span class="sf17b16">が重複している（構文</span><span style="color: #000000; background-color: #efcb05; ">エラー</span><span class="sf17b18">）</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">**構文エラーも併発:**</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">```csharp</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">//</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b18">Models/</span><span style="color: #000000; background-color: #efcb05; ">TerminalRegistModel</span><span class="sf17b16">.cs</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b18">行69-71</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">&nbsp; &nbsp; &nbsp; &nbsp; #endregion</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">&nbsp; &nbsp; </span><span style="color: #000000; background-color: #efcb05; ">}</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">&nbsp; &nbsp; } &nbsp;// &lt;- 余分な閉じ括弧でコンパイル</span><span style="color: #000000; background-color: #efcb05; ">エラー</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">```</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 2. 宣言</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 2. 宣言</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.1. 変数</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.1. 変数</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d17" href="#d17">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">#### 2.1.1. </span><span class="sf17b16">命名</span><span style="color: #000000; background-color: #efcb05; ">規則</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">#### 2.1.1. </span><span class="sf17b16">共通</span><span style="color: #000000; background-color: #efcb05; ">規則</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d18" href="#d18">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">Pascal記法、camel記法が適切に使い分け</span><span style="color: #000000; background-color: #efcb05; ">ら</span><span class="sf17b16">れてい</span><span style="color: #000000; background-color: #efcb05; ">る</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">小文字か</span><span style="color: #000000; background-color: #efcb05; ">ら</span><span class="sf17b16">始ま</span><span style="color: #000000; background-color: #efcb05; ">る</span><span class="sf17b18">camelCase使用</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">- 単語区切りで大文字化</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">- 型プレフィックス未使用（規約通り）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">#### 2.1.2. ローカル変数</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">#### 2.1.2. ローカル変数</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d19" href="#d19">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">ローカル変数の</span><span style="color: #000000; background-color: #efcb05; ">命名</span><span class="sf17b18">が適切</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">共通規則に従った</span><span style="color: #000000; background-color: #efcb05; ">命名</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">#### 2.1.3. メンバ変数</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">#### 2.1.3. メンバ変数</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d20" href="#d20">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** ❌ </span><span style="color: #000000; background-color: #efcb05; ">違反</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** ❌ </span><span class="sf17b18">重大な</span><span style="color: #000000; background-color: #efcb05; ">違反</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/TerminalController.cs 行17-27</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/TerminalController.cs 行17-27</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly TerminalRegistBusinessLogic terminalLogic;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly TerminalRegistBusinessLogic terminalLogic;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly SimRegistBusinessLogic simLogic;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly SimRegistBusinessLogic simLogic;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly TerminalSimHimodukeBusinessLogic himodukeLogic;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly TerminalSimHimodukeBusinessLogic himodukeLogic;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// DataAccess/TerminalDataAccess.cs 行17</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// DataAccess/TerminalDataAccess.cs 行17</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">protected string connectionString;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">protected string connectionString;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Models/ValidationResult.cs 行15</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Models/ValidationResult.cs 行15</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly List&lt;string&gt; errors;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly List&lt;string&gt; errors;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d21" href="#d21">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span style="color: #000000; background-color: #efcb05; ">メンバ変数にアンダースコア(_)プレフィックスが付与されていない</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b18">**</span><span style="color: #000000; background-color: #efcb05; ">メンバ変数にアンダースコア(_)プレフィックスが付与されていない</span><span class="sf17b18">**</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約</span><span class="sf17b18">では</span><span style="color: #000000; background-color: #efcb05; ">「メンバ変数</span><span style="color: #000000; background-color: #efcb05; ">名</span><span style="color: #000000; background-color: #efcb05; ">の</span><span class="sf17b18">前に</span><span style="color: #000000; background-color: #efcb05; ">プレフィックス</span><span class="sf17b16">として</span><span style="color: #000000; background-color: #efcb05; ">"_"を付</span><span class="sf17b16">加</span><span style="color: #000000; background-color: #efcb05; ">する」</span><span class="sf17b16">と</span><span style="color: #000000; background-color: #efcb05; ">明</span><span class="sf17b16">記されて<wbr>いる</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約</span><span style="color: #000000; background-color: #efcb05; ">「メンバ変数</span><span class="sf17b18">を宣言する際には、ローカル変数と同様の命</span><span style="color: #000000; background-color: #efcb05; ">名</span><span class="sf17b18">規則により考えた変数<wbr>名</span><span style="color: #000000; background-color: #efcb05; ">の</span><span style="color: #000000; background-color: #efcb05; ">プレフィックス</span><span class="sf17b16">に</span><span style="color: #000000; background-color: #efcb05; ">"_"を付</span><span class="sf17b16">与</span><span style="color: #000000; background-color: #efcb05; ">する」</span><span class="sf17b16">に</span><span style="color: #000000; background-color: #efcb05; ">明</span><span class="sf17b16">確に違反</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**正しい記述例:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**正しい記述例:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly TerminalRegistBusinessLogic _terminalLogic;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly TerminalRegistBusinessLogic _terminalLogic;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly SimRegistBusinessLogic _simLogic;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly SimRegistBusinessLogic _simLogic;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">protected string _connectionString;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">protected string _connectionString;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly List&lt;string&gt; _errors;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private readonly List&lt;string&gt; _errors;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">#### 2.1.4. 定数</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">#### 2.1.4. 定数</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/BaseController.cs 行14-24</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/BaseController.cs 行14-24</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private const string ROLE_OFFICE_MANAGER = "21";</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private const string ROLE_OFFICE_MANAGER = "21";</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private const string ROLE_INDUSTRIAL_STAFF = "60";</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private const string ROLE_INDUSTRIAL_STAFF = "60";</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private const string ROLE_ADMINISTRATOR = "99";</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">private const string ROLE_ADMINISTRATOR = "99";</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 定数が全て大文字で記述されている</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 定数が全て大文字で記述されている</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.2. プロパティ</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.2. プロパティ</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d22" href="#d22">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** </span><span class="sf17b16">🟡</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">一部要改善</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** </span><span class="sf17b16">✅</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">遵守</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d23" href="#d23">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span style="color: #000000; background-color: #efcb05; ">プロパティ</span><span class="sf17b16">名はPascal</span><span style="color: #000000; background-color: #efcb05; ">記</span><span class="sf17b16">法で適切</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b18">Pascal記法で命名されている</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">- get/setアクセサの同一行記述が許可範囲内</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**</span><span class="sf17b16">改善点</span><span style="color: #000000; background-color: #efcb05; ">:**</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">- 規約「</span><span style="color: #000000; background-color: #efcb05; ">プロパティ</span><span class="sf17b16">のgetアクセサとsetアクセサに限り、{}を同一行内に</span><span style="color: #000000; background-color: #efcb05; ">記</span><span class="sf17b16">述す<wbr>ることを許可する」に準拠</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">```csharp</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// Models/</span><span class="sf17b16">ValidationResult</span><span style="color: #000000; background-color: #efcb05; ">.cs</span><span class="sf17b18">&nbsp;行36-39</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**</span><span class="sf17b16">例</span><span style="color: #000000; background-color: #efcb05; ">:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">public </span><span class="sf17b16">bool</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">IsValid</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">{</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// Models/</span><span class="sf17b16">TerminalRegistModel</span><span style="color: #000000; background-color: #efcb05; ">.cs</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">&nbsp; &nbsp; </span><span style="color: #000000; background-color: #efcb05; ">get</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span style="color: #000000; background-color: #efcb05; ">{ </span><span class="sf17b16">return</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">!errors.Any()</span><span style="color: #000000; background-color: #efcb05; ">; }</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">public </span><span class="sf17b16">DateTime</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">CreatedDate </span><span style="color: #000000; background-color: #efcb05; ">{</span><span class="sf17b16">&nbsp;</span><span style="color: #000000; background-color: #efcb05; ">get</span><span class="sf17b18">;</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b18">set; }</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">}</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">public string CreatedProgramId </span><span style="color: #000000; background-color: #efcb05; ">{ </span><span class="sf17b16">get;</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">set</span><span style="color: #000000; background-color: #efcb05; ">; }</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d24" href="#d24">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- get/setアクセサの記述方法に一貫性がない</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 同一行記述と別行記述が混在している</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.3. メソッド</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.3. メソッド</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d25" href="#d25">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 動詞+名詞の形式で命名</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 動詞+名詞の形式で命名</span><span class="sf17b18">（GetUser、SetPassword等）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- Pascal記法</span><span class="sf17b18">を</span><span style="color: #000000; background-color: #efcb05; ">使用</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- Pascal記法</span><span style="color: #000000; background-color: #efcb05; ">使用</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.4. クラス</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.4. クラス</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d26" href="#d26">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b18">クラス名が</span><span style="color: #000000; background-color: #efcb05; ">Pascal記法で</span><span class="sf17b16">記述されてい</span><span style="color: #000000; background-color: #efcb05; ">る</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span style="color: #000000; background-color: #efcb05; ">Pascal記法で</span><span class="sf17b16">命名</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">- 意味のあ</span><span style="color: #000000; background-color: #efcb05; ">る</span><span class="sf17b18">クラス名</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.5. インタフェース</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.5. インタフェース</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d27" href="#d27">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 独自インタフェース</span><span class="sf17b18">は</span><span style="color: #000000; background-color: #efcb05; ">未使用だが、.NET標準インタフェース</span><span style="color: #000000; background-color: #efcb05; ">を適切に使用</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 独自インタフェース</span><span style="color: #000000; background-color: #efcb05; ">未使用だが、.NET標準インタフェース</span><span class="sf17b18">（IDisposabl<wbr>e等）</span><span style="color: #000000; background-color: #efcb05; ">を適切に使用</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.6. ネームスペース</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 2.6. ネームスペース</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.Controllers</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.Controllers</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.Models</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.Models</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.BusinessLogic</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.BusinessLogic</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.DataAccess</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">namespace HX.Terminal.DataAccess</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 適切な階層構造</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- 適切な階層構造</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d28" href="#d28">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 2.7. 列挙</span><span class="sf17b16">型</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 2.7. 列挙</span><span class="sf17b16">体</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守（該当なし）</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守（該当なし）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 3. 禁止事項</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 3. 禁止事項</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 3.1. public メンバフィールドの禁止</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 3.1. public メンバフィールドの禁止</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d29" href="#d29">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- publicフィールド</span><span class="sf17b16">は</span><span style="color: #000000; background-color: #efcb05; ">使用</span><span class="sf17b18">されていない</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- publicフィールド</span><span class="sf17b16">未</span><span style="color: #000000; background-color: #efcb05; ">使用</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 外部アクセス</span><span class="sf17b18">が必要な場合</span><span style="color: #000000; background-color: #efcb05; ">はプロパティ</span><span class="sf17b16">を使用</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 外部アクセス</span><span style="color: #000000; background-color: #efcb05; ">はプロパティ</span><span class="sf17b16">経由</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 3.2. アクセス修飾子なしの宣言の禁止</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 3.2. アクセス修飾子なしの宣言の禁止</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d30" href="#d30">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">すべ</span><span style="color: #000000; background-color: #efcb05; ">ての宣言で適切なアクセス修飾子</span><span class="sf17b18">が</span><span style="color: #000000; background-color: #efcb05; ">指定</span><span class="sf17b18">されている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">全</span><span style="color: #000000; background-color: #efcb05; ">ての宣言で適切なアクセス修飾子</span><span style="color: #000000; background-color: #efcb05; ">指定</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d31" href="#d31">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 3.3. コピー</span><span class="sf17b16">＆</span><span style="color: #000000; background-color: #efcb05; ">ペーストの禁止</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 3.3. コピー</span><span class="sf17b16">、</span><span style="color: #000000; background-color: #efcb05; ">ペーストの禁止</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ❌ 違反</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ❌ 違反</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d32" href="#d32">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// Controllers/TerminalController.cs 行257-</span><span class="sf17b18">260, 行265-</span><span style="color: #000000; background-color: #efcb05; ">268</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// Controllers/TerminalController.cs 行257-</span><span style="color: #000000; background-color: #efcb05; ">268</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// </span><span class="sf17b16">権限チェ</span><span style="color: #000000; background-color: #efcb05; ">ッ</span><span class="sf17b16">ク</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// </span><span class="sf17b16">同じメソ</span><span style="color: #000000; background-color: #efcb05; ">ッ</span><span class="sf17b16">ド名で異なる実装が重複定義（コンパイルエラー要因）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">private bool CheckAuthorization()</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">private bool CheckAuthorization()</span><span class="sf17b18">&nbsp;// 1回目の定義</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; var userRole = GetCurrentUserRole();</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; var userRole = GetCurrentUserRole();</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return userRole == "21" || userRole == "60" || userRole == "99";</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return userRole == "21" || userRole == "60" || userRole == "99";</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d33" href="#d33">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">// 権限チェック（内部メソッド）</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">private bool CheckAuthorization()</span><span class="sf17b18">&nbsp;// 2回目の定義（重複）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">private bool CheckAuthorization()</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return base.CheckAuthorization();</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return base.CheckAuthorization();</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d34" href="#d34">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 同</span><span class="sf17b16">じ</span><span style="color: #000000; background-color: #efcb05; ">メソッド名</span><span class="sf17b16">で異なる実装が</span><span style="color: #000000; background-color: #efcb05; ">重複定義</span><span class="sf17b18">されている（コンパイルエラーの原因）</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 同</span><span class="sf17b16">一</span><span style="color: #000000; background-color: #efcb05; ">メソッド名</span><span class="sf17b16">の</span><span style="color: #000000; background-color: #efcb05; ">重複定義</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 権限チェック処理</span><span style="color: #000000; background-color: #efcb05; ">が</span><span class="sf17b16">複数箇所に散在している</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 権限チェック処理</span><span class="sf17b18">のコピー＆ペースト</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">- GetCurrentUserRoleメソッド</span><span style="color: #000000; background-color: #efcb05; ">が</span><span class="sf17b16">未定義でコンパイルエラー</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 3.4. コードのコメントアウトの禁止</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 3.4. コードのコメントアウトの禁止</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ❌ 違反</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ❌ 違反</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Global.asax.cs 行27-28</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Global.asax.cs 行27-28</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// ログ出力（log4netなどを使用）</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// ログ出力（log4netなどを使用）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Logger.Error("Application Error", exception);</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Logger.Error("Application Error", exception);</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d35" href="#d35">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- コメントアウトされたコードが残存</span><span class="sf17b18">している</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- コメントアウトされたコードが残存</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約</span><span class="sf17b18">では</span><span style="color: #000000; background-color: #efcb05; ">「コ</span><span style="color: #000000; background-color: #efcb05; ">メントアウト</span><span class="sf17b16">され</span><span style="color: #000000; background-color: #efcb05; ">たコードをそのまま残してはいけない」</span><span class="sf17b16">と</span><span style="color: #000000; background-color: #efcb05; ">明</span><span class="sf17b16">記されてい<wbr>る</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約</span><span style="color: #000000; background-color: #efcb05; ">「コ</span><span class="sf17b18">ード中にコ</span><span style="color: #000000; background-color: #efcb05; ">メントアウト</span><span class="sf17b16">し</span><span style="color: #000000; background-color: #efcb05; ">たコードをそのまま残してはいけない」</span><span class="sf17b16">に</span><span style="color: #000000; background-color: #efcb05; ">明</span><span class="sf17b16">確に違<wbr>反</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 4. 例外処理</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 4. 例外処理</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 4.1. 例外とは</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 4.1. 例外とは</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 4.2. 例外処理の構文</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 4.2. 例外処理の構文</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- try-catch-finally構文を適切に使用</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- try-catch-finally構文を適切に使用</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d36" href="#d36">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 4.3. 例外</span><span class="sf17b16">処理</span><span style="color: #000000; background-color: #efcb05; ">の原則</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 4.3. 例外</span><span class="sf17b16">捕捉</span><span style="color: #000000; background-color: #efcb05; ">の原則</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** 🟡 一部要改善</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** 🟡 一部要改善</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/BaseController.cs 行53</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/BaseController.cs 行53</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">catch (Exception)</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">catch (Exception)</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return false;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return false;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**改善点:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**改善点:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d37" href="#d37">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span style="color: #000000; background-color: #efcb05; ">例外</span><span class="sf17b18">の</span><span style="color: #000000; background-color: #efcb05; ">種</span><span class="sf17b16">類を</span><span style="color: #000000; background-color: #efcb05; ">特定</span><span class="sf17b16">せずに全例外をキャッチしている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b18">具体的な</span><span style="color: #000000; background-color: #efcb05; ">例外</span><span style="color: #000000; background-color: #efcb05; ">種</span><span class="sf17b16">別の</span><span style="color: #000000; background-color: #efcb05; ">特定</span><span class="sf17b16">が不十分</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">ログ出力など</span><span style="color: #000000; background-color: #efcb05; ">の適切な処理</span><span style="color: #000000; background-color: #efcb05; ">が不足</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">例外処理時</span><span style="color: #000000; background-color: #efcb05; ">の適切な処理</span><span class="sf17b18">（ログ出力等）</span><span style="color: #000000; background-color: #efcb05; ">が不足</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d38" href="#d38">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 4.4. 例外処理に</span><span class="sf17b16">よ</span><span style="color: #000000; background-color: #efcb05; ">る禁止事項</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 4.4. 例外処理に</span><span class="sf17b16">おけ</span><span style="color: #000000; background-color: #efcb05; ">る禁止事項</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** ❌ </span><span style="color: #000000; background-color: #efcb05; ">違反</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**判定:** ❌ </span><span class="sf17b18">重大な</span><span style="color: #000000; background-color: #efcb05; ">違反</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">#### throw ex; の禁止</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">**判定:** ✅ 遵守（該当なし）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">#### catch (Exception ex) の禁止</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">**判定:** ❌ 明確な違反</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d39" href="#d39">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// BusinessLogic/TerminalBusinessLogic.cs 行148</span><span class="sf17b18">, 292, 416, 444</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// BusinessLogic/TerminalBusinessLogic.cs 行148</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">catch (Exception ex)</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">catch (Exception ex)</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; result.AddError($"ファイル処理中にエラーが発生しました：{e<wbr>x.Message}");</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; result.AddError($"ファイル処理中にエラーが発生しました：{e<wbr>x.Message}");</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return result;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return result;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d40" href="#d40">.</a></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// 同様の違反が行292, 416, 444でも発生</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/BaseController.cs 行53, 69, 85</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/BaseController.cs 行53, 69, 85</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">catch (Exception)</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">catch (Exception)</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return false;</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; return false;</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**違反内容:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d41" href="#d41">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">`</span><span style="color: #000000; background-color: #efcb05; ">catch (Exception ex)</span><span class="sf17b16">`</span><span style="color: #000000; background-color: #efcb05; ">の使用（規約で明確に禁止）</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">**</span><span style="color: #000000; background-color: #efcb05; ">catch (Exception ex)</span><span class="sf17b16">&nbsp;</span><span style="color: #000000; background-color: #efcb05; ">の使用（規約で明確に禁止）</span><span class="sf17b18">**</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約</span><span class="sf17b18">では</span><span style="color: #000000; background-color: #efcb05; ">「catch (Exception ex) という catch 句の記述は禁止する」</span><span class="sf17b16">と明記されている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 規約</span><span style="color: #000000; background-color: #efcb05; ">「catch (Exception ex) という catch 句の記述は禁止する」</span><span class="sf17b16">に直接違反</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">具体</span><span style="color: #000000; background-color: #efcb05; ">的</span><span class="sf17b18">な</span><span style="color: #000000; background-color: #efcb05; ">例外</span><span class="sf17b16">の種類を特定せずに全例外をキャッチ</span><span style="color: #000000; background-color: #efcb05; ">して</span><span class="sf17b16">いる</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">StackOverflowException, OutOfMemoryException等の致命</span><span style="color: #000000; background-color: #efcb05; ">的</span><span style="color: #000000; background-color: #efcb05; ">例外</span><span class="sf17b16">も捕捉</span><span style="color: #000000; background-color: #efcb05; ">して</span><span class="sf17b16">しまう</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 5. Disposeメソッド</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 5. Disposeメソッド</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 5.1-5.3. IDisposableインタフェース</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 5.1-5.3. IDisposableインタフェース</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d42" href="#d42">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- IDisposableを実装したクラス（SqlConnection</span><span class="sf17b16">など</span><span style="color: #000000; background-color: #efcb05; ">）を適切<wbr>に使用</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- IDisposableを実装したクラス（SqlConnection</span><span class="sf17b16">等</span><span style="color: #000000; background-color: #efcb05; ">）を適切に<wbr>使用</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 5.4. using ステートメント</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 5.4. using ステートメント</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** ✅ 遵守</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**遵守状況:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d43" href="#d43">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// DataAccess/TerminalDataAccess.cs</span><span class="sf17b18">&nbsp;行62-66</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// DataAccess/TerminalDataAccess.cs</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">using (var connection = new SqlConnection(connectionString))</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">using (var connection = new SqlConnection(connectionString))</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">{</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; connection.Open();</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; connection.Open();</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; // 処理</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; // 処理</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">}</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d44" href="#d44">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- usingステートメント</span><span class="sf17b16">が</span><span style="color: #000000; background-color: #efcb05; ">適切に使用</span><span class="sf17b18">されている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- usingステートメント</span><span class="sf17b16">を</span><span style="color: #000000; background-color: #efcb05; ">適切に使用</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d45" href="#d45">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">## 6. メソッドの行数制限</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">## 6. メソッドの行数制限</span><span class="sf17b18">について</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d46" href="#d46">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### </span><span class="sf17b18">6.1. </span><span style="color: #000000; background-color: #efcb05; ">メソッドの行数</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### </span><span style="color: #000000; background-color: #efcb05; ">メソッドの行数</span><span class="sf17b18">制限</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** 🟡 一部要改善</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**判定:** 🟡 一部要改善</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**問題箇所:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// BusinessLogic/TerminalBusinessLogic.cs ProcessTerminalCsvFileメソッド</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// BusinessLogic/TerminalBusinessLogic.cs ProcessTerminalCsvFileメソッド</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d47" href="#d47">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// 約80行程度</span><span class="sf17b18">の長いメソッド</span><span style="color: #000000; background-color: #efcb05; ">（100行以内だが機能分割を推奨）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// 約80行程度</span><span style="color: #000000; background-color: #efcb05; ">（100行以内だが機能分割を推奨）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**改善点:**</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">**改善点:**</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d48" href="#d48">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b18">100行は超えていないが、</span><span style="color: #000000; background-color: #efcb05; ">CSVファイル処理とバリデーションが1つのメソッドに<wbr>集約</span><span class="sf17b18">されている</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span style="color: #000000; background-color: #efcb05; ">CSVファイル処理とバリデーションが1つのメソッドに集約</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 機能別</span><span class="sf17b18">の</span><span style="color: #000000; background-color: #efcb05; ">メソッド分割を検討</span><span class="sf17b18">すべき</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 機能別</span><span style="color: #000000; background-color: #efcb05; ">メソッド分割を検討</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d49" href="#d49">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">## </span><span class="sf17b16">重大な問題</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">## </span><span class="sf17b16">🚨 コンパイルエラー要因</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d50" href="#d50">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### </span><span class="sf17b16">❗</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;構文エラー</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### </span><span class="sf17b16">1.</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;構文エラー</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">**問題箇所:**</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Models/TerminalRegistModel.cs 行69-71</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Models/TerminalRegistModel.cs 行69-71</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; &nbsp; &nbsp; #endregion</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; &nbsp; &nbsp; #endregion</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; }</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; }</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; } &nbsp;// &lt;- 余分な閉じ括弧</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">&nbsp; &nbsp; } &nbsp;// &lt;- 余分な閉じ括弧</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d51" href="#d51">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- クラス定義の終了で余分な閉じ括弧がある</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- コンパイルエラーの原因となる</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d52" href="#d52">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### </span><span class="sf17b16">❗</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;メソッド名重複</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### </span><span class="sf17b16">2.</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;メソッド名重複</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">**問題箇所:**</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```csharp</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/TerminalController.cs</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">// Controllers/TerminalController.cs</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d53" href="#d53">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// CheckAuthorizationメソッドが同じクラス内で重複定義</span><span style="color: #000000; background-color: #efcb05; ">されてい</span><span class="sf17b16">る<wbr></span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">// CheckAuthorizationメソッドが同じクラス内で重複定義</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">```</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">### 3. 未定義メソッド参照</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">```csharp</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">// Controllers/TerminalController.cs 行258</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">var userRole = GetCurrentUserRole(); // このメソッドが定義</span><span style="color: #000000; background-color: #efcb05; ">されてい</span><span class="sf17b16">ない</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">```</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d54" href="#d54">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 同一クラス内で同じメソッド名の重複定義</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 総合評価</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 総合評価</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d55" href="#d55">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### ✅ 遵守項目（1</span><span class="sf17b16">5</span><span style="color: #000000; background-color: #efcb05; ">項目）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### ✅ 遵守項目（1</span><span class="sf17b16">2</span><span style="color: #000000; background-color: #efcb05; ">項目）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">基本フォ</span><span style="color: #000000; background-color: #efcb05; ">ー</span><span class="sf17b16">マット（</span><span style="color: #000000; background-color: #efcb05; ">インデント、改行、{}の使用</span><span class="sf17b16">）</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">スペ</span><span style="color: #000000; background-color: #efcb05; ">ー</span><span class="sf17b16">ス、</span><span style="color: #000000; background-color: #efcb05; ">インデント、改行、{}の使用</span><span class="sf17b16">方法</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 命名規則（クラス、メソッド、プロパティ、定数</span><span style="color: #000000; background-color: #efcb05; ">）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- 命名規則（クラス、メソッド、プロパティ、定数</span><span class="sf17b18">、ローカル変数</span><span style="color: #000000; background-color: #efcb05; ">）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- ネームスペース構成</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- ネームスペース構成</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- publicフィールドの禁止</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">- publicフィールドの禁止</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d56" href="#d56">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- usingステートメントの適切</span><span class="sf17b18">な</span><span style="color: #000000; background-color: #efcb05; ">使用</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- usingステートメントの適切</span><span style="color: #000000; background-color: #efcb05; ">使用</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">IDisposableリソー</span><span style="color: #000000; background-color: #efcb05; ">ス</span><span style="color: #000000; background-color: #efcb05; ">の</span><span class="sf17b16">適切な処理</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">- </span><span class="sf17b16">アクセ</span><span style="color: #000000; background-color: #efcb05; ">ス</span><span class="sf17b18">修飾子</span><span style="color: #000000; background-color: #efcb05; ">の</span><span class="sf17b16">明示</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d57" href="#d57">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### ❌ </span><span style="color: #000000; background-color: #efcb05; ">違反項目（</span><span class="sf17b16">6</span><span style="color: #000000; background-color: #efcb05; ">項目）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### ❌ </span><span class="sf17b18">重大な</span><span style="color: #000000; background-color: #efcb05; ">違反項目（</span><span class="sf17b16">5</span><span style="color: #000000; background-color: #efcb05; ">項目）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. **ファイル</span><span class="sf17b16">構成</span><span style="color: #000000; background-color: #efcb05; ">違反** - 1ファイル複数クラス定義</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. **ファイル</span><span class="sf17b16">分け</span><span style="color: #000000; background-color: #efcb05; ">違反** - 1ファイル複数クラス定義</span><span class="sf17b18">（規約1-6）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">2. **メンバ変数命名</span><span class="sf17b18">規約</span><span style="color: #000000; background-color: #efcb05; ">違反** - アンダースコアプレフィックス未使用</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">2. **メンバ変数命名</span><span style="color: #000000; background-color: #efcb05; ">違反** - アンダースコアプレフィックス未使用</span><span class="sf17b18">（規約2.1.3）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">3. **コメントアウトコード存在** - 削除が必要</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">3. **コメントアウトコード存在** - 削除が必要</span><span class="sf17b18">（規約3.4）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">4. **コピー＆ペースト違反** - 重複</span><span class="sf17b16">処理の存在</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">4. **コピー＆ペースト違反** - 重複</span><span class="sf17b16">メソッド定義（規約3.3）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">5. **例外処理禁止</span><span class="sf17b18">事項</span><span style="color: #000000; background-color: #efcb05; ">違反** - catch(Exception)の使用</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">5. **例外処理禁止</span><span style="color: #000000; background-color: #efcb05; ">違反** - catch(Exception)の使用</span><span class="sf17b18">（規約4.4）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">6.</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">**構文</span><span style="color: #000000; background-color: #efcb05; ">エラー</span><span class="sf17b16">**</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b18">- </span><span style="color: #000000; background-color: #efcb05; ">余分な閉じ括弧</span><span class="sf17b16">、</span><span style="color: #000000; background-color: #efcb05; ">メソッド名重複</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">###</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">🚨 コンパイル</span><span style="color: #000000; background-color: #efcb05; ">エラー</span><span class="sf17b16">（3項目）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 🟡 改善推奨項目（</span><span class="sf17b16">3</span><span style="color: #000000; background-color: #efcb05; ">項目）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">1.</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span style="color: #000000; background-color: #efcb05; ">余分な閉じ括弧</span><span class="sf17b16">による構文エラー</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span class="sf17b18">プロパティアクセサ記述方法の統一</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">2. </span><span style="color: #000000; background-color: #efcb05; ">メソッド名重複</span><span class="sf17b18">によるコンパイルエラー</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">2. </span><span style="color: #000000; background-color: #efcb05; ">例外処理の詳細化</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">3. 未定義メソッド参照によるコンパイルエラー</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">3</span><span style="color: #000000; background-color: #efcb05; ">. 長いメソッドの機能分割</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 🟡 改善推奨項目（</span><span class="sf17b16">2</span><span style="color: #000000; background-color: #efcb05; ">項目）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span style="color: #000000; background-color: #efcb05; ">例外処理の詳細化</span><span class="sf17b18">（ログ出力等）</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #c0c0c0; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">2</span><span style="color: #000000; background-color: #efcb05; ">. 長いメソッドの機能分割</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 優先度別改善アクション</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">## 優先度別改善アクション</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 🚨 緊急対応（コンパイルエラー修正）</span></code></td>
+<td class="ln"></td><td class="sf3b2"><code><span class="sf3b2">### 🚨 緊急対応（コンパイルエラー修正）</span></code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d58" href="#d58">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span style="color: #000000; background-color: #efcb05; ">Models/TerminalRegistModel.cs</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">の</span><span style="color: #000000; background-color: #efcb05; ">余分な閉じ括弧削除</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span class="sf17b18">**</span><span style="color: #000000; background-color: #efcb05; ">Models/TerminalRegistModel.cs</span><span class="sf17b18">**</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">- </span><span style="color: #000000; background-color: #efcb05; ">余分な閉じ括弧削除</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">2. </span><span style="color: #000000; background-color: #efcb05; ">Controllers/TerminalController.cs</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">の</span><span style="color: #000000; background-color: #efcb05; ">重複メソッド定義修正</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">2. </span><span class="sf17b18">**</span><span style="color: #000000; background-color: #efcb05; ">Controllers/TerminalController.cs</span><span class="sf17b18">**</span><span style="color: #000000; background-color: #efcb05; ">&nbsp;</span><span class="sf17b16">- </span><span style="color: #000000; background-color: #efcb05; ">重複メソッド定義修正</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">3. **Controllers/TerminalController.cs** - GetCurrentUserRoleメソッド実装</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 🔴 </span><span class="sf17b16">高</span><span style="color: #000000; background-color: #efcb05; ">優先</span><span class="sf17b16">度</span><span style="color: #000000; background-color: #efcb05; ">（規約違反修正）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span style="color: #000000; background-color: #efcb05; ">メンバ変数</span><span style="color: #000000; background-color: #efcb05; ">にアンダースコア</span><span style="color: #000000; background-color: #efcb05; ">プレフィックス追加</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 🔴 </span><span class="sf17b16">最</span><span style="color: #000000; background-color: #efcb05; ">優先</span><span class="sf17b16">対応</span><span style="color: #000000; background-color: #efcb05; ">（規約違反修正）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">2. 1ファイル複数クラス定義の分離</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span class="sf17b18">**ファイル分け修正** - 3つのクラスを個別ファイルに分離</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">3. </span><span style="color: #000000; background-color: #efcb05; ">catch(Exception)</span><span class="sf17b16">の</span><span style="color: #000000; background-color: #efcb05; ">具体的例外種別</span><span class="sf17b16">への</span><span style="color: #000000; background-color: #efcb05; ">変更</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">2. **</span><span style="color: #000000; background-color: #efcb05; ">メンバ変数</span><span class="sf17b18">修正** - 全メンバ変数</span><span style="color: #000000; background-color: #efcb05; ">にアンダースコア</span><span class="sf17b18">(_)</span><span style="color: #000000; background-color: #efcb05; ">プレフィックス追加</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">4. </span><span style="color: #000000; background-color: #efcb05; ">コメントアウトコード</span><span class="sf17b18">の</span><span style="color: #000000; background-color: #efcb05; ">削除</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">3. </span><span class="sf17b18">**例外処理修正** - </span><span style="color: #000000; background-color: #efcb05; ">catch(Exception)</span><span class="sf17b16">を</span><span style="color: #000000; background-color: #efcb05; ">具体的例外種別</span><span class="sf17b16">に</span><span style="color: #000000; background-color: #efcb05; ">変更</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">4. </span><span class="sf17b18">**</span><span style="color: #000000; background-color: #efcb05; ">コメントアウトコード</span><span style="color: #000000; background-color: #efcb05; ">削除</span><span class="sf17b18">** - Global.asax.csの未使用コード除去</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 🟡 </span><span class="sf17b16">中優先度</span><span style="color: #000000; background-color: #efcb05; ">（品質向上）</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span class="sf17b18">重複処理の共通メソッド化</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">### 🟡 </span><span class="sf17b16">推奨対応</span><span style="color: #000000; background-color: #efcb05; ">（品質向上）</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b18">2. </span><span style="color: #000000; background-color: #efcb05; ">例外処理時のログ出力</span><span style="color: #000000; background-color: #efcb05; ">追加</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">1. </span><span style="color: #000000; background-color: #efcb05; ">例外処理時のログ出力</span><span class="sf17b18">機能</span><span style="color: #000000; background-color: #efcb05; ">追加</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">3</span><span style="color: #000000; background-color: #efcb05; ">. 長いメソッドの機能分割</span>&nbsp;</code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span class="sf17b16">2</span><span style="color: #000000; background-color: #efcb05; ">. 長いメソッドの機能分割</span><span class="sf17b18">検討</span>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+<tr>
+<td class="ln"><a id="d59" href="#d59">.</a></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**全体評価:** </span><span class="sf17b16">基本的な構造は良好だ</span><span style="color: #000000; background-color: #efcb05; ">が</span><span style="color: #000000; background-color: #efcb05; ">、</span><span style="color: #000000; background-color: #efcb05; ">重要な</span><span class="sf17b16">規約違反と構文エラー</span><span style="color: #000000; background-color: #efcb05; ">が</span><span style="color: #000000; background-color: #efcb05; ">存在</span><span class="sf17b16">するため、早</span><span style="color: #000000; background-color: #efcb05; ">急</span><span class="sf17b16">な修正</span><span style="color: #000000; background-color: #efcb05; ">が<wbr>必要。</span></code></td>
+<td class="ln"></td><td style="color: #000000; background-color: #efcb05; "><code><span style="color: #000000; background-color: #efcb05; ">**全体評価:** </span><span class="sf17b16">規約準拠度</span><span style="color: #000000; background-color: #efcb05; ">が</span><span class="sf17b18">低く</span><span style="color: #000000; background-color: #efcb05; ">、</span><span class="sf17b18">コンパイルエラーも含む</span><span style="color: #000000; background-color: #efcb05; ">重要な</span><span class="sf17b16">問題</span><span style="color: #000000; background-color: #efcb05; ">が</span><span class="sf17b18">多数</span><span style="color: #000000; background-color: #efcb05; ">存在</span><span class="sf17b16">。緊</span><span style="color: #000000; background-color: #efcb05; ">急</span><span class="sf17b16">対応と最優先<wbr>対応の実施</span><span style="color: #000000; background-color: #efcb05; ">が必要。</span></code></td>
+</tr>
+<tr>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+<td class="ln"></td><td class="sf3b2"><code>&nbsp;</code></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
